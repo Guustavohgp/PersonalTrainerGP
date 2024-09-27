@@ -25,6 +25,7 @@
 
             const nome = document.getElementById('nome').value;
             const idade = document.getElementById('idade').value;
+            const sexo = document.getElementById('sexo').value;
             const biotipo = document.getElementById('biotipo').value;
             const dias = document.getElementById('dias').value;
             const objetivo = document.getElementById('objetivo').value || ""; // Valor vazio se desabilitado
@@ -32,7 +33,7 @@
             const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
 
             // Construir a URL para a página de resultado
-            const resultadoUrl = `result.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
+            const resultadoUrl = `result.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
             // Redirecionar para a página de resultado com parâmetros na URL
             window.location.href = resultadoUrl;
         }
@@ -56,6 +57,14 @@
 
             <label for="idade">Idade:</label>
             <input type="number" id="idade" name="idade" required>
+
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="F">F</option>
+                <option value="M">M</option>
+                <option value="Outros">Outros</option>
+            </select>
+
 
             <label for="biotipo">Biotipo Corporal:</label>
             <select id="biotipo" name="biotipo" required>
