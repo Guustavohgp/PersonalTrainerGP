@@ -34,7 +34,7 @@
             const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
 
             // Construir a URL para a página de resultado
-            const resultadoUrl = `result.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
+            const resultadoUrl = `result.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
             // Redirecionar para a página de resultado com parâmetros na URL
             window.location.href = resultadoUrl;
         }
@@ -62,16 +62,15 @@
 
             <label for="sexo">Sexo:</label>
             <select id="sexo" name="sexo" required>
-                <option value="" disabled selected></option> 
-                <option value="F">F</option>
-                <option value="M">M</option>
+                <option value="" disabled selected></option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
                 <option value="Outros">Outros</option>
             </select>
 
-
             <label for="biotipo">Biotipo Corporal:</label>
             <select id="biotipo" name="biotipo" required>
-                <option value="" disabled selected></option> 
+                <option value="" disabled selected></option>
                 <option value="Ectomorfo">Ectomorfo</option>
                 <option value="Mesomorfo">Mesomorfo</option>
                 <option value="Endomorfo">Endomorfo</option>
@@ -79,7 +78,7 @@
 
             <label for="dias">Dias Disponíveis para Treino:</label>
             <select id="dias" name="dias" required>
-                <option value="" disabled selected></option> 
+                <option value="" disabled selected></option>
                 <option value="1">1 dia</option>
                 <option value="3">3 dias</option>
                 <option value="5">5 dias</option>
@@ -99,7 +98,7 @@
 
             <label for="objetivo">Objetivo:</label>
             <select id="objetivo" name="objetivo" required>
-                <option value="" disabled selected></option> 
+                <option value="" disabled selected></option>
                 <option value="Ganho de massa muscular">Ganho de massa muscular</option>
                 <option value="Perda de gordura">Perda de gordura</option>
                 <option value="Condicionamento físico geral">Condicionamento físico geral</option>
@@ -107,13 +106,13 @@
 
             <label for="nivel">Nível de Experiência:</label>
             <select id="nivel" name="nivel" required>
-                <option value="" disabled selected></option> 
+                <option value="" disabled selected></option>
                 <option value="Iniciante">Iniciante</option>
                 <option value="Intermediário">Intermediário</option>
                 <option value="Avançado">Avançado</option>
             </select>
 
-            <button type="button" id="generateButton">Gerar Treino</button>
+            <button type="submit" id="generateButton">Gerar Treino</button>
         </form>
 
         <div id="resultado"></div>

@@ -1,20 +1,3 @@
-document.getElementById("generateButton").addEventListener("click", function() {
-    const params = {
-        tipoTreino: document.getElementById("tipoTreino").value,
-        objetivo: document.getElementById("objetivo").value,
-        nivel: document.getElementById("nivel").value,
-        dias: document.getElementById("dias").value
-    };
-
-    // Adicionando log para verificar os parâmetros recebidos
-    console.log("Parâmetros recebidos:", params);
-
-    // Chamada da função para gerar a rotina de treino
-    const resultado = gerarRotinaTreino(params);
-    
-    // Exibir o resultado na div correspondente
-    document.getElementById("resultado").innerHTML = resultado;
-});
 function gerarRotinaTreino(params) {
     let planoGerado = [];
 
