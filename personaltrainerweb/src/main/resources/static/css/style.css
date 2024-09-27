@@ -69,3 +69,21 @@ input[type="radio"] {
 #resultado {
     margin-bottom: 40px; /* Adiciona um espaço abaixo do resultado para garantir que o botão fique separado */
 }
+
+/* Estilos para o botão .btn */
+.btn {
+    background-color: #007bff; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    padding: 10px 15px; /* Espaçamento interno (vertical, horizontal) */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-top: 20px; /* Margem superior */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+/* Efeito de hover para .btn */
+.btn:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
