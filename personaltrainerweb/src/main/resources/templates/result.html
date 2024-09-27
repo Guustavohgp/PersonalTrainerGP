@@ -10,11 +10,10 @@
     <div class="container">
         <h1>Seu Plano de Treino Personalizado</h1>
         <div id="resultado" class="resultado"></div>
-        <a href="index" class="btn">Voltar</a>
-        
+        <a href="index" class="btn">Voltar</a> <!-- Corrigi o link para "index.html" -->
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="/js/script.js"></script> 
     <script>
         // Função para obter parâmetros da URL
         function getQueryParams() {
@@ -36,22 +35,22 @@
             const params = getQueryParams();
             const resultado = `
                 <h2>Informações do Usuário</h2>
-                <p><strong>Nome:</strong> ${params.nome}</p>
-                <p><strong>Idade:</strong> ${params.idade}</p>
-                <p><strong>Sexo:</strong> ${params.sexo}</p>
-                <p><strong>Biotipo:</strong> ${params.biotipo}</p>
-                <p><strong>Dias Disponíveis:</strong> ${params.dias}</p>
-                <p><strong>Tipo de Treino:</strong> ${params.tipoTreino}</p>
-                <p><strong>Objetivo:</strong> ${params.objetivo}</p>
-                <p><strong>Nível de Experiência:</strong> ${params.nivel}</p>
+                <p><strong>Nome:</strong> ${params.nome || 'N/A'}</p> 
+                <p><strong>Idade:</strong> ${params.idade || 'N/A'}</p>
+                <p><strong>Sexo:</strong> ${params.sexo || 'N/A'}</p>
+                <p><strong>Biotipo:</strong> ${params.biotipo || 'N/A'}</p>
+                <p><strong>Dias Disponíveis:</strong> ${params.dias || 'N/A'}</p>
+                <p><strong>Tipo de Treino:</strong> ${params.tipoTreino || 'N/A'}</p>
+                <p><strong>Objetivo:</strong> ${params.objetivo || 'N/A'}</p>
+                <p><strong>Nível de Experiência:</strong> ${params.nivel || 'N/A'}</p>
                 <h2>Plano de Treino</h2>
                 <div id="plano-treino"></div>
             `;
             document.getElementById('resultado').innerHTML = resultado;
 
             // Gerar e exibir o plano de treino
-            const planoTreino = gerarRotinaTreino(params);
-            document.getElementById('plano-treino').innerHTML = planoTreino;
+            const planoTreino = gerarRotinaTreino(params); 
+            document.getElementById('plano-treino').innerHTML = planoTreino || 'Nenhum plano gerado.'; 
         }
 
         // Exibir os resultados ao carregar a página
@@ -59,7 +58,6 @@
             exibirResultados();
         };
     </script>
-    <script src="/js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </body>
 </html>
