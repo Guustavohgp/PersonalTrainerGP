@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
         }
 
         // Adiciona eventos ao carregar a página
-        window.onload = function() {
+        window.onload = function () {
             const radios = document.querySelectorAll('input[name="tipoTreino"]');
             radios.forEach(radio => {
                 radio.addEventListener('change', verificarObjetivo);
@@ -48,6 +49,7 @@
         }
     </script>
 </head>
+
 <body>
     <div class="container">
         <h1>Crie Seu Plano de Treino</h1>
@@ -60,14 +62,16 @@
 
             <label for="sexo">Sexo:</label>
             <select id="sexo" name="sexo" required>
-                <option value="F">F</option>
-                <option value="M">M</option>
+                <option value="" disabled selected></option> 
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
                 <option value="Outros">Outros</option>
             </select>
 
 
             <label for="biotipo">Biotipo Corporal:</label>
             <select id="biotipo" name="biotipo" required>
+                <option value="" disabled selected></option> 
                 <option value="Ectomorfo">Ectomorfo</option>
                 <option value="Mesomorfo">Mesomorfo</option>
                 <option value="Endomorfo">Endomorfo</option>
@@ -75,6 +79,7 @@
 
             <label for="dias">Dias Disponíveis para Treino:</label>
             <select id="dias" name="dias" required>
+                <option value="" disabled selected></option> 
                 <option value="1">1 dia</option>
                 <option value="3">3 dias</option>
                 <option value="5">5 dias</option>
@@ -94,6 +99,7 @@
 
             <label for="objetivo">Objetivo:</label>
             <select id="objetivo" name="objetivo" required>
+                <option value="" disabled selected></option> 
                 <option value="Ganho de massa muscular">Ganho de massa muscular</option>
                 <option value="Perda de gordura">Perda de gordura</option>
                 <option value="Condicionamento físico geral">Condicionamento físico geral</option>
@@ -101,6 +107,7 @@
 
             <label for="nivel">Nível de Experiência:</label>
             <select id="nivel" name="nivel" required>
+                <option value="" disabled selected></option> 
                 <option value="Iniciante">Iniciante</option>
                 <option value="Intermediário">Intermediário</option>
                 <option value="Avançado">Avançado</option>
@@ -112,7 +119,8 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="/js/script.js"></script> 
+    <script src="/js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </body>
+
 </html>
