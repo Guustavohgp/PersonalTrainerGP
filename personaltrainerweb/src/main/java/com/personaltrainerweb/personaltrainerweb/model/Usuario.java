@@ -13,6 +13,7 @@ public class Usuario {
 
     private String nome;
     private int idade;
+    private String sexo;
     private String biotipo;
     private String treino;
     private String experiencia;
@@ -39,6 +40,14 @@ public class Usuario {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getBiotipo() {
