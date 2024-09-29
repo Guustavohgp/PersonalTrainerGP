@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado do Plano de Treino</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <div class="container">
-        <h1>Seu Plano de Treino Personalizado</h1>
-        <div id="resultado" class="resultado"></div>
-        <a href="index" class="btn">Voltar</a> <!-- Corrigi o link para "index.html" -->
+        <h1>Resultado do Plano de Treino</h1>
+        
+        <!-- Exibe os dados informados -->
+        <p><strong>Nome:</strong> <span id="nome"></span></p>
+        <p><strong>Idade:</strong> <span id="idade"></span></p>
+        <p><strong>Sexo:</strong> <span id="sexo"></span></p>
+        <p><strong>Biotipo Corporal:</strong> <span id="biotipo"></span></p>
+        <p><strong>Dias Disponíveis:</strong> <span id="dias"></span></p>
+        <p><strong>Tipo de Treino:</strong> <span id="tipoTreino"></span></p>
+        <p><strong>Objetivo:</strong> <span id="objetivo"></span></p>
+        <p><strong>Nível de Experiência:</strong> <span id="nivel"></span></p>
+
+        <!-- Exibe o plano de treino gerado -->
+        <h2>Plano de Treino</h2>
+        <div id="treinoGerado"></div>
+
+        <!-- Botão para voltar -->
+        <button onclick="voltar()">Voltar</button>
     </div>
 
-    <script src="/js/script.js"></script> 
     <script>
-        // Função para obter parâmetros da URL
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                nome: params.get('nome'),
-                idade: params.get('idade'),
-                sexo: params.get('sexo'),
-                biotipo: params.get('biotipo'),
-                dias: params.get('dias'),
-                tipoTreino: params.get('tipoTreino'),
-                objetivo: params.get('objetivo'),
-                nivel: params.get('nivel')
-            };
-        }
-
-        // Função para exibir os parâmetros e o plano de treino gerado
-        function exibirResultados() {
-            const params = getQueryParams();
-            const resultado = `
-                <h2>Informações do Usuário</h2>
-                <p><strong>Nome:</strong> ${params.nome || 'N/A'}</p> 
-                <p><strong>Idade:</strong> ${params.idade || 'N/A'}</p>
-                <p><strong>Sexo:</strong> ${params.sexo || 'N/A'}</p>
-                <p><strong>Biotipo:</strong> ${params.biotipo || 'N/A'}</p>
-                <p><strong>Dias Disponíveis:</strong> ${params.dias || 'N/A'}</p>
-                <p><strong>Tipo de Treino:</strong> ${params.tipoTreino || 'N/A'}</p>
-                <p><strong>Objetivo:</strong> ${params.objetivo || 'N/A'}</p>
-                <p><strong>Nível de Experiência:</strong> ${params.nivel || 'N/A'}</p>
-                <h2>Plano de Treino</h2>
-                <div id="plano-treino"></div>
-            `;
-            document.getElementById('resultado').innerHTML = resultado;
-
-            // Gerar e exibir o plano de treino
-            const planoTreino = gerarRotinaTreino(params); 
-            document.getElementById('plano-treino').innerHTML = planoTreino || 'Nenhum plano gerado.'; 
-        }
-
-        // Exibir os resultados ao carregar a página
+        // Função para carregar os dados do treino gerado
         window.onload = function() {
-            exibirResultados();
+            const urlParams = new URLSearchParams(window.location.search);
+
+            document.getElementById('nome').textContent = urlParams.get('nome');
+            document.getElementById('idade').textContent = urlParams.get('idade');
+            document.getElementById('sexo').textContent = urlParams.get('sexo');
+            document.getElementById('biotipo').textContent = urlParams.get('biotipo');
+            document.getElementById('dias').textContent = urlParams.get('dias');
+            document.getElementById('tipoTreino').textContent = urlParams.get('tipoTreino');
+            document.getElementById('objetivo').textContent = urlParams.get('objetivo');
+            document.getElementById('nivel').textContent = urlParams.get('nivel');
+
+            // Carregar o plano de treino gerado
+            const treinoGerado = urlParams.get('treinoGerado');
+            if (treinoGerado) {
+                document.getElementById('treinoGerado').innerHTML = treinoGerado.replace(/\n/g, '<br>');
+            } else {
+                document.getElementById('treinoGerado').textContent = "Nenhum plano de treino foi gerado.";
+            }
         };
+
+        // Função para voltar à página inicial
+        function voltar() {
+            window.history.back();
+        }
     </script>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </body>
+
 </html>
