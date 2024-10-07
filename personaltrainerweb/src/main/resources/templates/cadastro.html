@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Trainer GP - Login</title>
+    <title>Personal Trainer GP - Cadastro</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Centralizando o conteúdo com Flexbox */
@@ -64,62 +64,64 @@
 
         .mensagem {
             margin-top: 15px;
-            color: red;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-            display: block;
-            margin-top: 15px;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            color: green;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Personal Trainer GP</h2>
-        <p>Seja Bem Vindo ao Personal Trainer GP</p>
+        <p>Faça seu cadastro</p>
 
-        <form id="loginForm" onsubmit="return validarLogin()">
+        <form id="cadastroForm" onsubmit="return validarCadastro()">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="usuario" required>
 
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Cadastrar</button>
+            <p><a href="/index">Voltar</a></p>
         </form>
 
-        <div id="mensagemLogin" class="mensagem"></div>
-        <p><a href="/cadastro">Criar Conta</a></p>
+        <div id="mensagemCadastro" class="mensagem"></div>
     </div>
 
     <script>
-        function validarLogin() {
+        function validarCadastro() {
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
-            const mensagemLogin = document.getElementById("mensagemLogin");
+            const mensagemCadastro = document.getElementById("mensagemCadastro");
 
-            // Recuperar usuários cadastrados do localStorage
+            // Verificar se o usuário já está cadastrado
             const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-            // Verificar se o usuário existe e a senha está correta
-            const usuarioEncontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
-
-            if (usuarioEncontrado) {
-                mensagemLogin.textContent = "Login realizado com sucesso!";
-                // Redirecionar para a próxima página após o login
-                setTimeout(() => {
-                    window.location.href = "/treino"; // Aqui você pode definir a próxima página após o login
-                }, 1000);
-            } else {
-                mensagemLogin.textContent = "Usuário ou senha incorretos!";
+            if (usuarios.some(u => u.usuario === usuario)) {
+                mensagemCadastro.textContent = "Usuário já cadastrado!";
+                return false;
             }
+
+            // Verificar se a senha tem pelo menos 6 caracteres e contém pelo menos um número
+            const senhaValida = /^(?=.*\d).{6,}$/; // Expressão regular: pelo menos 6 caracteres e deve conter pelo menos um número
+            if (!senhaValida.test(senha)) {
+                mensagemCadastro.textContent = "A senha deve ter pelo menos 6 caracteres e conter pelo menos um número!";
+                return false;
+            }
+
+            // Salvar novo usuário
+            usuarios.push({ usuario, senha });
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
+            
+            setTimeout(() => {
+                window.location.href = "/index";  // Redireciona para a página de login
+            }, 1000);
             return false;  // Impede o envio imediato do formulário
+        }
+
+        function voltarParaInicio() {
+            window.location.href = "/index";  // Redireciona para a página inicial
         }
     </script>
 </body>

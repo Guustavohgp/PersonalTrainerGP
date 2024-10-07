@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Treino Personalizado</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centralizar a página usando Flexbox */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px; /* Reduzido para tornar o botão menor */
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px; /* Diminui o tamanho da fonte */
+            margin-bottom: 10px; /* Espaço entre os botões */
+            text-align: center; /* Centraliza o texto do botão */
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilo específico para o botão "Voltar" */
+        .btn-back {
+            margin-right: 10px; /* Espaço à direita do botão "Voltar" */
+        }
+
+        /* Container para os botões */
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Espaço entre os botões */
+            margin-top: 15px; /* Espaço acima do container */
+        }
+    </style>
+    <script>
+        // Função para habilitar/desabilitar o campo de Objetivo
+        function verificarObjetivo() {
+            const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
+            const objetivo = document.getElementById('objetivo');
+
+            if (tipoTreino === 'Peso Livre') {
+                objetivo.disabled = false;
+            } else {
+                objetivo.disabled = true;
+                objetivo.value = "";  // Limpa o valor do campo quando desabilitado
+            }
+        }
+
+        // Função para gerar o plano de treino
+        function gerarPlano(event) {
+            event.preventDefault();  // Evita o reload da página
+
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const sexo = document.getElementById('sexo').value;
+            const biotipo = document.getElementById('biotipo').value;
+            const dias = document.getElementById('dias').value;
+            const objetivo = document.getElementById('objetivo').value || ""; // Valor vazio se desabilitado
+            const nivel = document.getElementById('nivel').value;
+            const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
+
+            // Construir a URL para a página de resultado
+            const resultadoUrl = `treinoGerado.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
+            // Redirecionar para a página de resultado com parâmetros na URL
+            window.location.href = resultadoUrl;
+        }
+
+        // Adiciona eventos ao carregar a página
+        window.onload = function() {
+            const radios = document.querySelectorAll('input[name="tipoTreino"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', verificarObjetivo);
+            });
+            verificarObjetivo(); // Verifica o estado inicial ao carregar a página
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Crie Seu Plano de Treino</h1>
+        <form id="treinoForm" onsubmit="gerarPlano(event)">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade" required>
+
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="" disabled selected></option>
+                <option value="Ectomorfo">Masculino</option>
+                <option value="Mesomorfo">Feminino</option>
+                <option value="Endomorfo">Outro</option>
+            </select>
+
+            <label for="biotipo">Biotipo Corporal:</label>
+            <select id="biotipo" name="biotipo" required>
+                <option value="" disabled selected></option>
+                <option value="Ectomorfo">Ectomorfo</option>
+                <option value="Mesomorfo">Mesomorfo</option>
+                <option value="Endomorfo">Endomorfo</option>
+            </select>
+
+            <label for="dias">Dias Disponíveis para Treino:</label>
+            <select id="dias" name="dias" required>
+                <option value="" disabled selected></option>
+                <option value="1">1 dia</option>
+                <option value="3">3 dias</option>
+                <option value="5">5 dias</option>
+            </select>
+
+            <label>Tipo de Treino:</label>
+            <div id="tipoTreino">
+                <div class="radio-option">
+                    <label>
+                        <input type="radio" id="funcional" name="tipoTreino" value="Funcional" required>
+                        Funcional
+                    </label>
+                </div>
+                <div class="radio-option">
+                    <label>
+                        <input type="radio" id="cardio" name="tipoTreino" value="Cardio">
+                        Cardio
+                    </label>
+                </div>
+                <div class="radio-option">
+                    <label>
+                        <input type="radio" id="pesoLivre" name="tipoTreino" value="Peso Livre">
+                        Peso Livre
+                    </label>
+                </div>
+            </div>
+
+            <label for="objetivo">Objetivo:</label>
+            <select id="objetivo" name="objetivo" required>
+                <option value="" disabled selected></option>
+                <option value="Ganho de massa muscular">Ganho de massa muscular</option>
+                <option value="Perda de gordura">Perda de gordura</option>
+                <option value="Condicionamento físico geral">Condicionamento físico geral</option>
+            </select>
+
+            <label for="nivel">Nível de Experiência:</label>
+            <select id="nivel" name="nivel" required>
+                <option value="" disabled selected></option>
+                <option value="Iniciante">Iniciante</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+            </select>
+
+            <div class="button-container">
+                <a href="/index" class="btn btn-back">Voltar à tela Inicial</a> <!-- Botão com a classe específica -->
+                <button type="submit" class="btn">Gerar Plano de Treino</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

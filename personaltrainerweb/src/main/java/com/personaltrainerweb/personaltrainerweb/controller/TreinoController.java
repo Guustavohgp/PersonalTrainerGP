@@ -16,7 +16,6 @@ public class TreinoController {  // Nome da classe deve estar de acordo com a co
             @RequestParam("biotipo") String biotipo,
             @RequestParam("dias") int dias,
             @RequestParam("tipoTreino") String tipoTreino,
-            @RequestParam(value = "objetivo", required = false) String objetivo,
             @RequestParam("nivel") String nivel,
             Model model) {
         
@@ -30,7 +29,6 @@ public class TreinoController {  // Nome da classe deve estar de acordo com a co
         model.addAttribute("biotipo", biotipo);
         model.addAttribute("dias", dias);
         model.addAttribute("tipoTreino", tipoTreino);
-        model.addAttribute("objetivo", objetivo);
         model.addAttribute("nivel", nivel);
         model.addAttribute("treinoGerado", treinoGerado);
 

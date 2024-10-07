@@ -12,8 +12,15 @@ public class UsuarioController {
         return "index"; // O Spring Boot vai buscar o arquivo index.html em /src/main/resources/templates
     }
 
-    @GetMapping("/result")
-    public String result() {
-        return "result"; // O Spring Boot vai buscar o arquivo result.html em /src/main/resources/templates
+    @GetMapping("/cadastro")
+    public String cadastro() {
+        return "cadastro"; // O Spring Boot vai buscar o arquivo result.html em /src/main/resources/templates
     }
+
+    @GetMapping("/treino")
+    public String treino() {
+        return "treino"; // O Spring Boot vai buscar o arquivo result.html em /src/main/resources/templates
+    }
+
+    
 }

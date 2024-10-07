@@ -1,38 +1,43 @@
-function gerarRotinaTreino(params) {
-    let planoGerado = [];
+function validarLogin() {
+    const loginUsername = document.getElementById("loginUsername").value;
+    const loginPassword = document.getElementById("loginPassword").value;
+    const mensagemLogin = document.getElementById("mensagemLogin");
 
-    // Definindo os dados de entrada
-    const { tipoTreino, nivelExperiencia, diasDisponiveis } = params;
-
-    // Planos de treino Funcional
-    const treinoFuncional = {
-        iniciante: {
-            1: ["Dia 1: Corrida 10min, Flexões 3x10"],
-            3: ["Dia 1: Corrida 10min", "Dia 2: Agachamentos 3x15", "Dia 3: Abdominais 3x20"],
-            5: ["Dia 1: Corrida 10min", "Dia 2: Flexões 3x10", "Dia 3: Agachamentos 3x15", "Dia 4: Burpees 3x10", "Dia 5: Corrida 10min"]
-        }
-        // Adicione outros níveis e tipos de treino conforme necessário
-    };
-
-    // Verifica o tipo de treino e preenche o planoGerado
-    if (tipoTreino === "Funcional") {
-        if (treinoFuncional[nivelExperiencia] && treinoFuncional[nivelExperiencia][diasDisponiveis]) {
-            planoGerado = treinoFuncional[nivelExperiencia][diasDisponiveis];
-        } else {
-            return "Plano de treino não encontrado para os parâmetros fornecidos.";
-        }
+    if (loginUsername === "" || loginPassword === "") {
+        mensagemLogin.textContent = "Por favor, preencha todos os campos!";
+        return false;
     }
 
-    // Aqui você pode adicionar lógica semelhante para os outros tipos de treino (Cardio, Peso Livre, etc.)
-
-    return planoGerado;
+    mensagemLogin.textContent = "Login realizado com sucesso!";
+    return true;
 }
 
-// Exemplo de uso da função
-const params = {
-    tipoTreino: "Funcional",
-    nivelExperiencia: "iniciante",
-    diasDisponiveis: 3
-};
+function validarCadastro() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const mensagemCadastro = document.getElementById("mensagemCadastro");
 
-console.log(gerarRotinaTreino(params));
+    if (password !== confirmPassword) {
+        mensagemCadastro.textContent = "As senhas não coincidem!";
+        return false;
+    }
+
+    if (password.length < 6) {
+        mensagemCadastro.textContent = "A senha deve ter pelo menos 6 caracteres!";
+        return false;
+    }
+
+    mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
+    return true;
+}
+
+function mostrarFormularioCadastro() {
+    document.getElementById("cadastroContainer").classList.remove("hidden");
+    document.getElementById("loginForm").parentElement.classList.add("hidden");
+}
+
+function mostrarFormularioLogin() {
+    document.getElementById("cadastroContainer").classList.add("hidden");
+    document.getElementById("loginForm").parentElement.classList.remove("hidden");
+}
