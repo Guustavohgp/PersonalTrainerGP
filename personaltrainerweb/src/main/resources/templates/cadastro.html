@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -66,6 +66,10 @@
             margin-top: 15px;
             color: green;
         }
+
+        .erro {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +78,10 @@
         <p>Faça seu cadastro</p>
 
         <form id="cadastroForm" onsubmit="return validarCadastro()">
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="usuario" required>
 
@@ -89,15 +97,17 @@
 
     <script>
         function validarCadastro() {
+            const nome = document.getElementById("nome").value;
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
             const mensagemCadastro = document.getElementById("mensagemCadastro");
 
-            // Verificar se o usuário já está cadastrado
+            // Verificar se o usuário já está cadastrado no localStorage
             const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
             if (usuarios.some(u => u.usuario === usuario)) {
                 mensagemCadastro.textContent = "Usuário já cadastrado!";
+                mensagemCadastro.classList.add("erro");
                 return false;
             }
 
@@ -105,23 +115,23 @@
             const senhaValida = /^(?=.*\d).{6,}$/; // Expressão regular: pelo menos 6 caracteres e deve conter pelo menos um número
             if (!senhaValida.test(senha)) {
                 mensagemCadastro.textContent = "A senha deve ter pelo menos 6 caracteres e conter pelo menos um número!";
+                mensagemCadastro.classList.add("erro");
                 return false;
             }
 
-            // Salvar novo usuário
+            // Salvar o novo usuário no localStorage
             usuarios.push({ usuario, senha });
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
             mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
-            
-            setTimeout(() => {
-                window.location.href = "/index";  // Redireciona para a página de login
-            }, 1000);
-            return false;  // Impede o envio imediato do formulário
-        }
+            mensagemCadastro.classList.remove("erro");
 
-        function voltarParaInicio() {
-            window.location.href = "/index";  // Redireciona para a página inicial
+            // Redireciona para a página de login após 1 segundo
+            setTimeout(() => {
+                window.location.href = "/index";  
+            }, 1000);
+
+            return false;  // Impede o envio imediato do formulário
         }
     </script>
 </body>
