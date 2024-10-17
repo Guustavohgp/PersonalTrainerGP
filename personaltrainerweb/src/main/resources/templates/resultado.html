@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino Gerado</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Centralizar a página usando Flexbox */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Centraliza o container na página */
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            text-align: left; /* Alinhamento à esquerda para o texto */
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .titulo-plano {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px; /* Adiciona um espaço acima do título */
+            margin-bottom: 10px; /* Adiciona um espaço abaixo do título */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 20px; /* Adiciona um espaço acima do botão */
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Treino Gerado</h1>
+        <p id="resultado"></p>
+        <div class="titulo-plano">Plano de treino:</div>
+        <a href="treino.html" class="btn">Voltar ao Treino</a>
+        <script src="treino.js" defer></script> 
+    </div>
+
+    <script>
+      // Função para obter os parâmetros da URL
+    function obterParametros() {
+        const params = new URLSearchParams(window.location.search);
+        const nome = params.get('nome');
+        const idade = params.get('idade');
+        const sexo = params.get('sexo');
+        const biotipo = params.get('biotipo');
+        const dias = params.get('dias');
+        const tipoTreino = params.get('tipoTreino');
+        const objetivo = params.get('objetivo');
+        const nivel = params.get('nivel');
+
+        return { nome, idade, sexo, biotipo, dias, tipoTreino, objetivo, nivel };
+    }
+
+     // Função para exibir as informações na página
+     function exibirInformacoes() {
+            const params = obterParametros();
+            const resultado = document.getElementById('resultado');
+
+            // Verifica se o tipo de treino é "peso livre"
+            if (params.tipoTreino.toLowerCase() === "peso livre") {
+                resultado.innerHTML = `
+                    <strong>Nome:</strong> ${params.nome}<br>
+                    <strong>Idade:</strong> ${params.idade}<br>
+                    <strong>Sexo:</strong> ${params.sexo}<br>
+                    <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
+                    <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
+                    <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
+                    <strong>Objetivo:</strong> ${params.objetivo}<br>
+                    <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
+                `;
+
+              
+            } else {
+                resultado.innerHTML = `
+                    <strong>Nome:</strong> ${params.nome}<br>
+                    <strong>Idade:</strong> ${params.idade}<br>
+                    <strong>Sexo:</strong> ${params.sexo}<br>
+                    <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
+                    <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
+                    <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
+                    <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
+                `;
+            }
+              // Chama a função de gerar treino
+              const planoTreino = gerarRotinaTreino(params);
+                resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
+        }
+
+        // Chama a função para exibir as informações ao carregar a página
+        window.onload = exibirInformacoes;
+    </script>
+</body>
+</html>

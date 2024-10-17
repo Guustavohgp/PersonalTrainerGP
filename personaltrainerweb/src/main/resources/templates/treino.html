@@ -110,7 +110,7 @@
             const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
 
             // Construir a URL para a página de resultado
-            const resultadoUrl = `treinoGerado.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
+            const resultadoUrl = `resultado.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&objetivo=${encodeURIComponent(objetivo)}&nivel=${encodeURIComponent(nivel)}`;
             // Redirecionar para a página de resultado com parâmetros na URL
             window.location.href = resultadoUrl;
         }
@@ -198,7 +198,7 @@
             </select>
 
             <div class="button-container">
-                <a href="/index" class="btn btn-back">Voltar à tela Inicial</a> <!-- Botão com a classe específica -->
+                <a href="index.html" class="btn btn-back">Voltar à tela Inicial</a> <!-- Botão com a classe específica -->
                 <button type="submit" class="btn">Gerar Plano de Treino</button>
             </div>
         </form>
