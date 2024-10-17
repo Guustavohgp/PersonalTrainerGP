@@ -1,24 +1,21 @@
 package com.personaltrainerweb.personaltrainerweb.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "usuariocadastro")
 public class UsuarioCadastro {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false, unique = true)
     private String usuario;
-
-    @Column(nullable = false)
     private String senha;
 
     public Long getId() {
@@ -52,5 +49,4 @@ public class UsuarioCadastro {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
 }

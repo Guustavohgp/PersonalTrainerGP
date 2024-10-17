@@ -1,7 +1,9 @@
 package com.personaltrainerweb.personaltrainerweb.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro;
 import com.personaltrainerweb.personaltrainerweb.repository.UsuarioCadastroRepository;
 
@@ -9,31 +11,34 @@ import com.personaltrainerweb.personaltrainerweb.repository.UsuarioCadastroRepos
 public class UsuarioCadastroService {
 
     @Autowired
-    private UsuarioCadastroRepository usuarioCadastroRepository;
+    private UsuarioCadastroRepository usuarioRepository; // Certifique-se de que o nome está consistente
 
-    // Método para cadastrar o usuário
-    public boolean cadastrar(UsuarioCadastro usuarioCadastro) {
-        if (usuarioCadastroRepository.findByUsuario(usuarioCadastro.getUsuario()).isPresent()) {
-            return false;  // Usuário já existe
-        }
-        usuarioCadastroRepository.save(usuarioCadastro); // Salva o novo usuário
-        return true;
+    // Método para cadastrar usuário
+    public UsuarioCadastro cadastrarUsuario(UsuarioCadastro usuario) {
+        // Criptografa a senha antes de salvar
+        usuario.setSenha(usuario.getSenha()); // Mantenha a senha sem criptografia se não usar o BCrypt
+        return usuarioRepository.save(usuario);
     }
 
-    // Método para verificar se o nome de usuário já está em uso
-    public boolean isUsuarioAvailable(String usuario) {
-        return usuarioCadastroRepository.findByUsuario(usuario).isEmpty();  // Verifica se o usuário existe
+    // Método para listar todos os usuários
+    public List<UsuarioCadastro> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 
-    // Método para autenticar o usuário
-    public boolean autenticar(UsuarioCadastro usuarioCadastro) {
-        // Tenta buscar o usuário pelo nome de usuário
-        UsuarioCadastro usuarioSalvo = usuarioCadastroRepository.findByUsuario(usuarioCadastro.getUsuario()).orElse(null);
+    // Método para buscar usuário pelo nome de usuário
+    public UsuarioCadastro buscarPorUsuario(String usuario) {
+        return usuarioRepository.findByUsuario(usuario);
+    }
 
-        // Verifica se o usuário foi encontrado e se a senha está correta
-        if (usuarioSalvo != null && usuarioSalvo.getSenha().equals(usuarioCadastro.getSenha())) {
-            return true;  // Autenticação bem-sucedida
-        }
-        return false;  // Falha na autenticação
+    // Método para deletar usuário pelo ID
+    public void deletarUsuario(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    // Método para autenticar usuário
+    public boolean autenticar(String usuario, String senha) {
+        UsuarioCadastro usuarioEncontrado = buscarPorUsuario(usuario);
+        // Verifica se o usuário existe e se a senha corresponde
+        return usuarioEncontrado != null && usuarioEncontrado.getSenha().equals(senha);
     }
 }

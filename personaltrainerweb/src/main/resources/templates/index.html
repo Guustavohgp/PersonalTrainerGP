@@ -104,21 +104,38 @@
             const senha = document.getElementById("senha").value;
             const mensagemLogin = document.getElementById("mensagemLogin");
 
-            // Recuperar usuários cadastrados do localStorage
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            // Dados do formulário
+            const dados = {
+                usuario: usuario,
+                senha: senha
+            };
 
-            // Verificar se o usuário existe e a senha está correta
-            const usuarioEncontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
-
-            if (usuarioEncontrado) {
+            // Enviar a requisição POST ao backend
+            fetch("http://localhost:8083/usuarios/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Retorna a resposta em formato JSON
+                } else {
+                    throw new Error("Usuário ou senha incorretos!");
+                }
+            })
+            .then(data => {
                 mensagemLogin.textContent = "Login realizado com sucesso!";
-                // Redirecionar para a próxima página após o login
+                // Redireciona para a próxima página após o login
                 setTimeout(() => {
                     window.location.href = "/treino"; // Aqui você pode definir a próxima página após o login
                 }, 1000);
-            } else {
-                mensagemLogin.textContent = "Usuário ou senha incorretos!";
-            }
+            })
+            .catch(error => {
+                mensagemLogin.textContent = error.message;
+            });
+
             return false;  // Impede o envio imediato do formulário
         }
     </script>

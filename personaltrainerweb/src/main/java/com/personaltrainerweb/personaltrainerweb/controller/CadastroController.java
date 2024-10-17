@@ -1,31 +1,36 @@
 package com.personaltrainerweb.personaltrainerweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro; // Certifique-se de que este é o nome correto da sua classe model
+import com.personaltrainerweb.personaltrainerweb.service.UsuarioCadastroService;
 
-import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro;
-import com.personaltrainerweb.personaltrainerweb.repository.UsuarioCadastroRepository;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/usuarios")
 public class CadastroController {
 
     @Autowired
-    private UsuarioCadastroRepository usuarioCadastroRepository;
+    private UsuarioCadastroService usuarioService;
 
-    // Método para cadastrar o usuário
-    public boolean cadastrar(UsuarioCadastro usuarioCadastro) {
-        // Verifica se o usuário já existe
-        if (usuarioCadastroRepository.findByUsuario(usuarioCadastro.getUsuario()).isPresent()) {
-            return false;  // Usuário já existe
-        }
-        usuarioCadastroRepository.save(usuarioCadastro); // Salva o novo usuário
-        return true;
+    @PostMapping("/cadastrar")
+    public UsuarioCadastro cadastrarUsuario(@RequestBody UsuarioCadastro usuario) {
+        return usuarioService.cadastrarUsuario(usuario);
     }
 
-    // Método para verificar se o nome de usuário já está em uso
-    public boolean isUsuarioAvailable(String usuario) {
-        return usuarioCadastroRepository.findByUsuario(usuario).isEmpty();  // Verifica se o usuário existe
+    @GetMapping("/listar")
+    public List<UsuarioCadastro> listarUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @GetMapping("/buscar/{usuario}")
+    public UsuarioCadastro buscarPorUsuario(@PathVariable String usuario) {
+        return usuarioService.buscarPorUsuario(usuario);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletarUsuario(@PathVariable Long id) {
+        usuarioService.deletarUsuario(id);
     }
 }

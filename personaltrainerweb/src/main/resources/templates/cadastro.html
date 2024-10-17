@@ -77,8 +77,7 @@
         <h2>Personal Trainer GP</h2>
         <p>Faça seu cadastro</p>
 
-        <form id="cadastroForm" onsubmit="return validarCadastro()">
-
+        <form id="cadastroForm" onsubmit="return cadastrarUsuario()">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -96,42 +95,56 @@
     </div>
 
     <script>
-        function validarCadastro() {
+        function cadastrarUsuario() {
             const nome = document.getElementById("nome").value;
             const usuario = document.getElementById("usuario").value;
             const senha = document.getElementById("senha").value;
             const mensagemCadastro = document.getElementById("mensagemCadastro");
 
-            // Verificar se o usuário já está cadastrado no localStorage
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-            if (usuarios.some(u => u.usuario === usuario)) {
-                mensagemCadastro.textContent = "Usuário já cadastrado!";
-                mensagemCadastro.classList.add("erro");
-                return false;
-            }
-
-            // Verificar se a senha tem pelo menos 6 caracteres e contém pelo menos um número
-            const senhaValida = /^(?=.*\d).{6,}$/; // Expressão regular: pelo menos 6 caracteres e deve conter pelo menos um número
+            // Validação da senha (mínimo 6 caracteres e ao menos 1 número)
+            const senhaValida = /^(?=.*\d).{6,}$/;
             if (!senhaValida.test(senha)) {
                 mensagemCadastro.textContent = "A senha deve ter pelo menos 6 caracteres e conter pelo menos um número!";
                 mensagemCadastro.classList.add("erro");
                 return false;
             }
 
-            // Salvar o novo usuário no localStorage
-            usuarios.push({ usuario, senha });
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+            // Dados do formulário
+            const dados = {
+                nome: nome,
+                usuario: usuario,
+                senha: senha
+            };
 
-            mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
-            mensagemCadastro.classList.remove("erro");
+            // Enviar a requisição POST ao backend
+            fetch("http://localhost:8083/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (response.ok) {
+                    mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
+                    mensagemCadastro.classList.remove("erro");
 
-            // Redireciona para a página de login após 1 segundo
-            setTimeout(() => {
-                window.location.href = "/index";  
-            }, 1000);
+                    // Redireciona para a página de login após 1 segundo
+                    setTimeout(() => {
+                        window.location.href = "/index";  
+                    }, 1000);
+                } else {
+                    mensagemCadastro.textContent = "Erro ao cadastrar usuário!";
+                    mensagemCadastro.classList.add("erro");
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                mensagemCadastro.textContent = "Erro ao conectar ao servidor!";
+                mensagemCadastro.classList.add("erro");
+            });
 
-            return false;  // Impede o envio imediato do formulário
+            return false;  // Evita o envio padrão do formulário
         }
     </script>
 </body>
