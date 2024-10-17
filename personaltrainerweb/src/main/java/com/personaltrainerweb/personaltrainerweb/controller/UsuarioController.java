@@ -20,13 +20,19 @@ public class UsuarioController {
    // Página inicial
    @GetMapping("/index")
    public String index() {
-       return "index"; // Buscará o arquivo index.html em /src/main/resources/templates
+       return "index"; 
    }
 
    // Página de cadastro
    @GetMapping("/cadastro")
    public String cadastro() {
-       return "cadastro"; // Buscará o arquivo cadastro.html em /src/main/resources/templates
+       return "cadastro"; 
+   }
+
+   // Página de treino
+   @GetMapping("/treino")
+   public String treino() {
+       return "treino"; 
    }
 
    // Rota para autenticar login
@@ -35,20 +41,20 @@ public class UsuarioController {
        boolean autenticado = usuarioCadastroService.autenticar(usuario.getUsuario(), usuario.getSenha());
 
        if (autenticado) {
-           return ResponseEntity.ok("{\"message\":\"Login realizado com sucesso!\"}"); // Retornando um JSON
+           return ResponseEntity.ok("{\"message\":\"Login realizado com sucesso!\"}"); 
        } else {
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"Usuário ou senha incorretos!\"}");
        }
    }
 
-   // Rota para listar todos os usuários
+   // Listar todos os usuários
    @GetMapping("/listarUsuarios")
    @ResponseBody
    public List<UsuarioCadastro> listarUsuarios() {
-       return usuarioCadastroService.listarUsuarios(); // Retorna a lista de usuários
+       return usuarioCadastroService.listarUsuarios(); 
    }
 
-   // Exemplo de funcionalidade existente (gerar treino)
+ 
    @GetMapping("/resultado")
    public String gerarTreino(
            @RequestParam String nome,
@@ -68,6 +74,6 @@ public class UsuarioController {
        model.addAttribute("tipoTreino", tipoTreino);
        model.addAttribute("objetivo", objetivo);
        model.addAttribute("nivel", nivel);
-       return "resultado"; // Nome do arquivo sem a extensão .html
+       return "resultado"; 
    }
 }
