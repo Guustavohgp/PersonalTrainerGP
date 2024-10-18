@@ -2,7 +2,7 @@ package com.personaltrainerweb.personaltrainerweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro; // Certifique-se de que este é o nome correto da sua classe model
+import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro;
 import com.personaltrainerweb.personaltrainerweb.service.UsuarioCadastroService;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.personaltrainerweb.personaltrainerweb.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,12 +10,12 @@ import com.personaltrainerweb.personaltrainerweb.repository.UsuarioCadastroRepos
 public class UsuarioCadastroService {
 
     @Autowired
-    private UsuarioCadastroRepository usuarioRepository; // Certifique-se de que o nome está consistente
+    private UsuarioCadastroRepository usuarioRepository;
 
     // Método para cadastrar usuário
     public UsuarioCadastro cadastrarUsuario(UsuarioCadastro usuario) {
         // Criptografa a senha antes de salvar
-        usuario.setSenha(usuario.getSenha()); // Mantenha a senha sem criptografia se não usar o BCrypt
+        usuario.setSenha(usuario.getSenha());
         return usuarioRepository.save(usuario);
     }
 

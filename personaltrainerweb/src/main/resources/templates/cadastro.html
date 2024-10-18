@@ -1,5 +1,6 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +39,8 @@
             text-align: left;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -72,6 +74,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Personal Trainer GP</h2>
@@ -124,28 +127,29 @@
                 },
                 body: JSON.stringify(dados)
             })
-            .then(response => {
-                if (response.ok) {
-                    mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
-                    mensagemCadastro.classList.remove("erro");
+                .then(response => {
+                    if (response.ok) {
+                        mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
+                        mensagemCadastro.classList.remove("erro");
 
-                    // Redireciona para a página de login após 1 segundo
-                    setTimeout(() => {
-                        window.location.href = "/index";  
-                    }, 1000);
-                } else {
-                    mensagemCadastro.textContent = "Erro ao cadastrar usuário!";
+                        // Redireciona para a página de login após 1 segundo
+                        setTimeout(() => {
+                            window.location.href = "/index";
+                        }, 1000);
+                    } else {
+                        mensagemCadastro.textContent = "Erro ao cadastrar usuário!";
+                        mensagemCadastro.classList.add("erro");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro:", error);
+                    mensagemCadastro.textContent = "Erro ao conectar ao servidor!";
                     mensagemCadastro.classList.add("erro");
-                }
-            })
-            .catch(error => {
-                console.error("Erro:", error);
-                mensagemCadastro.textContent = "Erro ao conectar ao servidor!";
-                mensagemCadastro.classList.add("erro");
-            });
+                });
 
             return false;  // Evita o envio padrão do formulário
         }
     </script>
 </body>
+
 </html>

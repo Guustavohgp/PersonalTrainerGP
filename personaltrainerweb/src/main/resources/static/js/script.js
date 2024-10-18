@@ -1,6 +1,6 @@
 // Função para validar login
 async function validarLogin() {
-    const usuario = document.getElementById("usuario").value; // Aqui, apenas o campo 'usuario'
+    const usuario = document.getElementById("usuario").value;
     const senha = document.getElementById("senha").value;
     const mensagemLogin = document.getElementById("mensagemLogin");
 
@@ -16,7 +16,7 @@ async function validarLogin() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ usuario: usuario, senha: senha }) // Enviando apenas 'usuario' e 'senha'
+            body: JSON.stringify({ usuario: usuario, senha: senha }) 
         });
 
         if (response.ok) {
@@ -34,10 +34,10 @@ async function validarLogin() {
 
 // Função para validar cadastro
 async function validarCadastro() {
-    const nome = document.getElementById("nome").value; // Campo 'nome'
-    const usuario = document.getElementById("usuario").value; // Campo 'usuario'
-    const senha = document.getElementById("senha").value; // Campo 'senha'
-    const confirmSenha = document.getElementById("confirmSenha").value; // Campo para confirmação de senha
+    const nome = document.getElementById("nome").value; 
+    const usuario = document.getElementById("usuario").value; 
+    const senha = document.getElementById("senha").value;
+    const confirmSenha = document.getElementById("confirmSenha").value; 
     const mensagemCadastro = document.getElementById("mensagemCadastro");
 
     if (nome === "" || usuario === "" || senha === "" || confirmSenha === "") {
@@ -62,7 +62,7 @@ async function validarCadastro() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome: nome, usuario: usuario, senha: senha }) // Enviando 'nome', 'usuario' e 'senha'
+            body: JSON.stringify({ nome: nome, usuario: usuario, senha: senha }) 
         });
 
         if (response.ok) {

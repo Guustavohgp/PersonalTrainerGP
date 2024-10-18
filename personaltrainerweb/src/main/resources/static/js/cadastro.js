@@ -1,4 +1,4 @@
-document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+document.getElementById("cadastroForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Impede o envio normal do formulário
 
     // Captura os dados do formulário
@@ -21,26 +21,26 @@ document.getElementById("cadastroForm").addEventListener("submit", function(even
         },
         body: JSON.stringify(usuarioCadastro)
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Erro ao cadastrar o usuário");
-        }
-    })
-    .then(data => {
-        // Exibe mensagem de sucesso ou redireciona
-        document.getElementById("mensagemCadastro").textContent = "Usuário cadastrado com sucesso!";
-        document.getElementById("mensagemCadastro").classList.remove("erro");
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("Erro ao cadastrar o usuário");
+            }
+        })
+        .then(data => {
+            // Exibe mensagem de sucesso ou redireciona
+            document.getElementById("mensagemCadastro").textContent = "Usuário cadastrado com sucesso!";
+            document.getElementById("mensagemCadastro").classList.remove("erro");
 
-        // Redireciona para outra página ou limpa o formulário
-        setTimeout(() => {
-            window.location.href = "/index"; // Ou qualquer outra página que você queira redirecionar
-        }, 1000);
-    })
-    .catch(error => {
-        // Exibe a mensagem de erro
-        document.getElementById("mensagemCadastro").textContent = error.message;
-        document.getElementById("mensagemCadastro").classList.add("erro");
-    });
+            // Redireciona para outra página ou limpa o formulário
+            setTimeout(() => {
+                window.location.href = "/index"; 
+            }, 1000);
+        })
+        .catch(error => {
+            // Exibe a mensagem de erro
+            document.getElementById("mensagemCadastro").textContent = error.message;
+            document.getElementById("mensagemCadastro").classList.add("erro");
+        });
 });

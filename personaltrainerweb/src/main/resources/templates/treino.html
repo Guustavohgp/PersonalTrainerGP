@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +30,11 @@
 
         h1 {
             color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495e;
             margin-bottom: 20px;
         }
 
@@ -40,7 +46,9 @@
             color: #333;
         }
 
-        input[type="text"], input[type="number"], select {
+        input[type="text"],
+        input[type="number"],
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -61,9 +69,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px; 
-            margin-bottom: 10px; 
-            text-align: center; 
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
         .btn:hover {
@@ -72,18 +80,17 @@
 
         /* Estilo específico para o botão "Voltar" */
         .btn-back {
-            margin-right: 10px; 
+            margin-right: 10px;
         }
 
         /* Container para os botões */
         .button-container {
             display: flex;
-            justify-content: space-between; 
-            margin-top: 15px; 
+            justify-content: space-between;
+            margin-top: 15px;
         }
     </style>
     <script>
-  
         // Função para gerar o plano de treino
         function gerarPlano(event) {
             event.preventDefault();  // Evita o reload da página
@@ -96,16 +103,32 @@
             const nivel = document.getElementById('nivel').value;
             const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
 
+            // Armazenar o nome do usuário no LocalStorage
+            localStorage.setItem('usuario', nome);
+
             // Construir a URL para a página de resultado
             const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&nivel=${encodeURIComponent(nivel)}`;
             // Redirecionar para a página de resultado com parâmetros na URL
             window.location.href = resultadoUrl;
         }
+
+        // Ao carregar a página, exibe o nome do usuário
+        window.onload = function () {
+            const usuario = localStorage.getItem('usuario');
+            const saudacao = document.getElementById('saudacao');
+            if (usuario) {
+                saudacao.textContent = `Preencha seus dados, ${usuario}!`;
+            } else {
+                saudacao.textContent = "Preencha seus dados, Visitante!";
+            }
+        };
     </script>
 </head>
+
 <body>
     <div class="container">
         <h1>Crie Seu Plano de Treino</h1>
+        <h2 id="saudacao"></h2>
         <form id="treinoForm" onsubmit="gerarPlano(event)">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
@@ -168,10 +191,11 @@
             </select>
 
             <div class="button-container">
-                <a href="/index" class="btn btn-back">Voltar à tela Inicial</a> <!-- Botão com a classe específica -->
+                <a href="/index" class="btn btn-back">Voltar à tela Inicial</a>
                 <button type="submit" class="btn">Gerar Plano de Treino</button>
             </div>
         </form>
     </div>
 </body>
+
 </html>

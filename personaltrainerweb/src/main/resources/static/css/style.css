@@ -4,14 +4,15 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%; /* Define altura total */
+html,
+body {
+    height: 100%;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
@@ -37,7 +38,8 @@ label {
     margin-top: 10px;
 }
 
-select, input[type="radio"] {
+select,
+input[type="radio"] {
     margin-top: 5px;
     padding: 10px;
     font-size: 16px;
@@ -51,7 +53,8 @@ input[type="radio"] {
     margin-top: 10px;
 }
 
-button, .btn {
+button,
+.btn {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -70,7 +73,7 @@ button, .btn {
 }
 
 #resultado {
-    margin-bottom: 40px; /* Adiciona um espaço abaixo do resultado para garantir que o botão fique separado */
+    margin-bottom: 40px;
 }
 
 .btn:hover {
