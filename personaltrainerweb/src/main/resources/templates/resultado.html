@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* Centraliza o container na página */
+            justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
@@ -41,8 +41,8 @@
         .titulo-plano {
             font-size: 20px;
             font-weight: bold;
-            margin-top: 20px; /* Adiciona um espaço acima do título */
-            margin-bottom: 10px; /* Adiciona um espaço abaixo do título */
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         .btn {
@@ -55,7 +55,7 @@
             cursor: pointer;
             font-size: 16px;
             text-decoration: none;
-            margin-top: 20px; /* Adiciona um espaço acima do botão */
+            margin-top: 20px;
         }
 
         .btn:hover {
@@ -68,27 +68,27 @@
         <h1>Treino Gerado</h1>
         <p id="resultado"></p>
         <div class="titulo-plano">Plano de treino:</div>
-        <a href="treino.html" class="btn">Voltar ao Treino</a>
+        <a href="/treino" class="btn">Voltar ao Treino</a>
         <script src="treino.js" defer></script> 
     </div>
 
     <script>
-      // Função para obter os parâmetros da URL
-    function obterParametros() {
-        const params = new URLSearchParams(window.location.search);
-        const nome = params.get('nome');
-        const idade = params.get('idade');
-        const sexo = params.get('sexo');
-        const biotipo = params.get('biotipo');
-        const dias = params.get('dias');
-        const tipoTreino = params.get('tipoTreino');
-        const nivel = params.get('nivel');
+        // Função para obter os parâmetros da URL
+        function obterParametros() {
+            const params = new URLSearchParams(window.location.search);
+            const nome = params.get('nome');
+            const idade = params.get('idade');
+            const sexo = params.get('sexo');
+            const biotipo = params.get('biotipo');
+            const dias = params.get('dias');
+            const tipoTreino = params.get('tipoTreino');
+            const nivel = params.get('nivel');
 
-        return { nome, idade, sexo, biotipo, dias, tipoTreino, nivel };
-    }
+            return { nome, idade, sexo, biotipo, dias, tipoTreino, nivel };
+        }
 
-     // Função para exibir as informações na página
-     function exibirInformacoes() {
+        // Função para exibir as informações na página
+        function exibirInformacoes() {
             const params = obterParametros();
             const resultado = document.getElementById('resultado');
 
@@ -103,8 +103,6 @@
                     <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
                     <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
                 `;
-
-              
             } else {
                 resultado.innerHTML = `
                     <strong>Nome:</strong> ${params.nome}<br>
@@ -116,9 +114,10 @@
                     <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
                 `;
             }
-              // Chama a função de gerar treino
-              const planoTreino = gerarRotinaTreino(params);
-                resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
+
+            // Chama a função de gerar treino
+            const planoTreino = gerarRotinaTreino(params);
+            resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
         }
 
         // Chama a função para exibir as informações ao carregar a página
