@@ -82,10 +82,9 @@
         const biotipo = params.get('biotipo');
         const dias = params.get('dias');
         const tipoTreino = params.get('tipoTreino');
-        const objetivo = params.get('objetivo');
         const nivel = params.get('nivel');
 
-        return { nome, idade, sexo, biotipo, dias, tipoTreino, objetivo, nivel };
+        return { nome, idade, sexo, biotipo, dias, tipoTreino, nivel };
     }
 
      // Função para exibir as informações na página
@@ -102,7 +101,6 @@
                     <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
                     <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
                     <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
-                    <strong>Objetivo:</strong> ${params.objetivo}<br>
                     <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
                 `;
 
