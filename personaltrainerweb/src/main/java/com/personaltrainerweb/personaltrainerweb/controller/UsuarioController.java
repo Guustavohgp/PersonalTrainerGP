@@ -54,7 +54,6 @@ public class UsuarioController {
        return usuarioCadastroService.listarUsuarios(); 
    }
 
- 
    @GetMapping("/resultado")
    public String gerarTreino(
            @RequestParam String nome,
@@ -65,6 +64,7 @@ public class UsuarioController {
            @RequestParam String tipoTreino,
            @RequestParam String nivel,
            Model model) {
+       // Adiciona os parâmetros ao modelo
        model.addAttribute("nome", nome);
        model.addAttribute("idade", idade);
        model.addAttribute("sexo", sexo);
@@ -72,6 +72,7 @@ public class UsuarioController {
        model.addAttribute("dias", dias);
        model.addAttribute("tipoTreino", tipoTreino);
        model.addAttribute("nivel", nivel);
-       return "resultado"; 
+   
+       return "resultado"; // Renderiza o template 'resultado.html'
    }
 }

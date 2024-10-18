@@ -97,7 +97,7 @@
             const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
 
             // Construir a URL para a página de resultado
-            const resultadoUrl = `resultado.html?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&nivel=${encodeURIComponent(nivel)}`;
+            const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&nivel=${encodeURIComponent(nivel)}`;
             // Redirecionar para a página de resultado com parâmetros na URL
             window.location.href = resultadoUrl;
         }
