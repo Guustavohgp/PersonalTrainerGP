@@ -63,7 +63,6 @@ public class UsuarioController {
            @RequestParam String biotipo,
            @RequestParam String dias,
            @RequestParam String tipoTreino,
-           @RequestParam String objetivo,
            @RequestParam String nivel,
            Model model) {
        model.addAttribute("nome", nome);
@@ -72,7 +71,6 @@ public class UsuarioController {
        model.addAttribute("biotipo", biotipo);
        model.addAttribute("dias", dias);
        model.addAttribute("tipoTreino", tipoTreino);
-       model.addAttribute("objetivo", objetivo);
        model.addAttribute("nivel", nivel);
        return "resultado"; 
    }
