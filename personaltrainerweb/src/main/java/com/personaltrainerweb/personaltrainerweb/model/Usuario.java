@@ -9,24 +9,25 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "treino")
+@Table(name = "treino") 
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     private int idade;
     private String sexo;
     private String biotipo;
     private String treino;
     private String experiencia;
 
-    // Relacionamento com usuario cadastrado
+    // Relacionamento com UsuarioCadastro
     @ManyToOne
-    @JoinColumn(name = "usuario", nullable = false) // Cria uma FK na tabela de treino
-    private UsuarioCadastro usuario;
+    @JoinColumn(name = "usuario", nullable = false)  // Cria uma FK 
+    private UsuarioCadastro usuarioCadastro;
 
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -75,11 +76,11 @@ public class Usuario {
         this.experiencia = experiencia;
     }
 
-    public UsuarioCadastro getUsuario() {
-        return usuario;
+    public UsuarioCadastro getUsuarioCadastro() {
+        return usuarioCadastro;
     }
 
-    public void setUsuario(UsuarioCadastro usuario) {
-        this.usuario = usuario;
+    public void setUsuarioCadastro(UsuarioCadastro usuarioCadastro) {
+        this.usuarioCadastro = usuarioCadastro;
     }
 }
