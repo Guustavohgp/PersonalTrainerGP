@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial - Treinos Personalizados</title>
+    <style>
+        /* Estilos para centralizar a página e os botões */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-back {
+            background-color: #e74c3c;
+        }
+
+        .btn-back:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bem-vindo!</h1>
+        <button id="meusTreinosBtn">Meus Treinos</button>
+        <button id="criarTreinoBtn">Criar Treino</button>
+        <button class="btn-back" id="voltarBtn">Voltar</button>
+    </div>
+
+    <script>
+        // Redirecionar para o histórico de treinos
+        document.getElementById('meusTreinosBtn').addEventListener('click', function() {
+            window.location.href = '/historicoTreinos';
+        });
+
+        // Redirecionar para a página de criar treino
+        document.getElementById('criarTreinoBtn').addEventListener('click', function() {
+            window.location.href = '/treino.html';
+        });
+
+        // Voltar para a página de login
+        document.getElementById('voltarBtn').addEventListener('click', function() {
+            window.location.href = '/login';
+        });
+    </script>
+
+</body>
+</html>
