@@ -34,6 +34,11 @@ public class UsuarioController {
         return "treino";
     }
 
+    @GetMapping("/pagina")
+    public String pagina() {
+        return "pagina";
+    }
+
     // Rota para autenticar login
     @PostMapping("/usuarios/login")
     public ResponseEntity<String> login(@RequestBody UsuarioCadastro usuario) {
