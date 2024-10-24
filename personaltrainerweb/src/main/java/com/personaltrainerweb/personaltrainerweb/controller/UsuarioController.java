@@ -34,6 +34,12 @@ public class UsuarioController {
         return "treino";
     }
 
+    @GetMapping("/treinos")
+    public String treinos() {
+        return "treinos";
+    }
+
+
     @GetMapping("/pagina")
     public String pagina() {
         return "pagina";
