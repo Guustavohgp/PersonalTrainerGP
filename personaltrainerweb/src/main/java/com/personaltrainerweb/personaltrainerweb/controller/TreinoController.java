@@ -15,27 +15,27 @@ public class TreinoController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/cadastrar") // Ajustado para o endpoint correto
+    @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> criarTreino(@RequestBody Usuario usuario) {
-        Usuario novoUsuario = usuarioService.salvarUsuario(usuario); // Salva o treino como parte do usuário
+        Usuario novoUsuario = usuarioService.salvarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listarTreinos() {
-        List<Usuario> usuarios = usuarioService.listarUsuarios(); // Listar todos os usuários (treinos)
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
         return ResponseEntity.ok(usuarios);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizarTreino(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
-        Usuario usuario = usuarioService.atualizarUsuario(id, usuarioAtualizado); // Atualiza os dados do usuário
+        Usuario usuario = usuarioService.atualizarUsuario(id, usuarioAtualizado);
         return ResponseEntity.ok(usuario);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTreino(@PathVariable Long id) {
-        usuarioService.deletarUsuario(id); // Deleta o usuário (ou treino)
+        usuarioService.deletarUsuario(id);
         return ResponseEntity.noContent().build();
     }
 }

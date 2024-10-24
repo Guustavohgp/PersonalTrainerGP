@@ -14,13 +14,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática de IDs
     private Long id;
 
-    private String nome; // Nome do usuário
-    private int idade; // Idade do usuário
-    private String sexo; // Sexo do usuário
-    private String biotipo; // Biotipo do usuário
-    private String treino; // Tipo de treino
-    private String experiencia; // Nível de experiência
-    private int dias; // Dias de treino por semana
+    private String nome;
+    private int idade;
+    private String sexo;
+    private String biotipo;
+    private String treino;
+    private String experiencia;
+    private int dias;
 
     // Getters e Setters
     public Long getId() {

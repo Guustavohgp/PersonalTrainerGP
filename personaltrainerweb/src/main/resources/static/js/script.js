@@ -16,7 +16,7 @@ async function validarLogin() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ usuario: usuario, senha: senha }) 
+            body: JSON.stringify({ usuario: usuario, senha: senha })
         });
 
         if (response.ok) {
@@ -34,10 +34,10 @@ async function validarLogin() {
 
 // Função para validar cadastro
 async function validarCadastro() {
-    const nome = document.getElementById("nome").value; 
-    const usuario = document.getElementById("usuario").value; 
+    const nome = document.getElementById("nome").value;
+    const usuario = document.getElementById("usuario").value;
     const senha = document.getElementById("senha").value;
-    const confirmSenha = document.getElementById("confirmSenha").value; 
+    const confirmSenha = document.getElementById("confirmSenha").value;
     const mensagemCadastro = document.getElementById("mensagemCadastro");
 
     if (nome === "" || usuario === "" || senha === "" || confirmSenha === "") {
@@ -62,7 +62,7 @@ async function validarCadastro() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome: nome, usuario: usuario, senha: senha }) 
+            body: JSON.stringify({ nome: nome, usuario: usuario, senha: senha })
         });
 
         if (response.ok) {

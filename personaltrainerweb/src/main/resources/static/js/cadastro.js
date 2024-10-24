@@ -1,5 +1,5 @@
 document.getElementById("cadastroForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Impede o envio normal do formulário
+    event.preventDefault();
 
     // Captura os dados do formulário
     const nome = document.getElementById("nome").value;
@@ -33,13 +33,12 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
             document.getElementById("mensagemCadastro").textContent = "Usuário cadastrado com sucesso!";
             document.getElementById("mensagemCadastro").classList.remove("erro");
 
-            // Redireciona para outra página ou limpa o formulário
+            // Redireciona para outra página 
             setTimeout(() => {
-                window.location.href = "/index"; 
+                window.location.href = "/index";
             }, 1000);
         })
         .catch(error => {
-            // Exibe a mensagem de erro
             document.getElementById("mensagemCadastro").textContent = error.message;
             document.getElementById("mensagemCadastro").classList.add("erro");
         });

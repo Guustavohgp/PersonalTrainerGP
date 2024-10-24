@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial - Treinos Personalizados</title>
     <style>
-        /* Estilos para centralizar a página e os botões */
         body {
             margin: 0;
             padding: 0;
@@ -56,31 +56,28 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1>Bem-vindo!</h1>
-        <button id="meusTreinosBtn">Meus Treinos</button>
         <button id="criarTreinoBtn">Criar Treino</button>
         <button class="btn-back" id="voltarBtn">Voltar</button>
     </div>
 
     <script>
-        // Redirecionar para o histórico de treinos
-        document.getElementById('meusTreinosBtn').addEventListener('click', function() {
-            window.location.href = '/meustreinos';
-        });
 
         // Redirecionar para a página de criar treino
-        document.getElementById('criarTreinoBtn').addEventListener('click', function() {
+        document.getElementById('criarTreinoBtn').addEventListener('click', function () {
             window.location.href = '/treino';
         });
 
         // Voltar para a página de login
-        document.getElementById('voltarBtn').addEventListener('click', function() {
+        document.getElementById('voltarBtn').addEventListener('click', function () {
             window.location.href = '/index';
         });
     </script>
 
 </body>
+
 </html>

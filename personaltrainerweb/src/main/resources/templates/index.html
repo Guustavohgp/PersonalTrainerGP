@@ -7,7 +7,6 @@
     <title>Personal Trainer GP - Login</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Centralizando o conteúdo com Flexbox */
         body {
             margin: 0;
             padding: 0;
@@ -130,9 +129,9 @@
                 })
                 .then(data => {
                     mensagemLogin.textContent = "Login realizado com sucesso!";
-                    // Redireciona para a próxima página após o login
+                    // Redireciona para a página 
                     setTimeout(() => {
-                        window.location.href = "/pagina"; 
+                        window.location.href = "/pagina";
                     }, 1000);
                 })
                 .catch(error => {

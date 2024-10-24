@@ -7,7 +7,6 @@
     <title>Treino Gerado</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Centralizar a página usando Flexbox */
         body {
             margin: 0;
             padding: 0;
@@ -75,41 +74,21 @@
             // Função para obter os parâmetros da URL
             function obterParametros() {
                 const params = new URLSearchParams(window.location.search);
-                const nome = params.get('nome') || "N/A"; // Definindo um valor padrão
-                const idade = params.get('idade') || "N/A"; // Definindo um valor padrão
-                const sexo = params.get('sexo') || "N/A"; // Definindo um valor padrão
-                const biotipo = params.get('biotipo') || "N/A"; // Definindo um valor padrão
-                const dias = params.get('dias') || "N/A"; // Definindo um valor padrão
-                const treino = params.get('treino') || "N/A"; // Definindo um valor padrão
-                const experiencia = params.get('experiencia') || "N/A"; // Definindo um valor padrão
+                const nome = params.get('nome');
+                const idade = params.get('idade');
+                const sexo = params.get('sexo');
+                const biotipo = params.get('biotipo');
+                const dias = params.get('dias');
+                const treino = params.get('treino');
+                const experiencia = params.get('experiencia');
 
                 return { nome, idade, sexo, biotipo, dias, treino, experiencia };
             }
 
             // Função para gerar a rotina de treino
             function gerarRotinaTreino(params) {
-                // Chame a função que já existe no seu arquivo scripts.js
-                // Supondo que a função no scripts.js se chama 'gerarTreino'
                 const plano = gerarTreino(params);
                 return plano;
-            }
-
-            // Função para salvar o treino no histórico
-            function salvarTreinoHistorico(params, planoTreino) {
-                const historico = JSON.parse(localStorage.getItem('historicoTreinos')) || {};
-
-                // Adiciona o treino gerado ao histórico do usuário
-                if (!historico[params.nome]) {
-                    historico[params.nome] = [];
-                }
-
-                historico[params.nome].push({
-                    treino: planoTreino,
-                    data: new Date().toLocaleString() // Adiciona a data do treino
-                });
-
-                // Salva o histórico atualizado no Local Storage
-                localStorage.setItem('historicoTreinos', JSON.stringify(historico));
             }
 
             // Função para exibir as informações na página
@@ -127,12 +106,9 @@
                     <strong>Nível de Experiência:</strong> ${params.experiencia}<br><br>
                 `;
 
-                // Gera o plano de treino
+                // Aqui você pode adicionar a lógica para gerar e exibir o plano de treino
                 const planoTreino = gerarRotinaTreino(params);
                 resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
-
-                // Salva o treino no histórico
-                salvarTreinoHistorico(params, planoTreino);
             }
 
             // Chama a função para exibir as informações ao carregar a página
@@ -140,3 +116,5 @@
         </script>
     </div>
 </body>
+
+</html>

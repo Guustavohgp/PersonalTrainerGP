@@ -1,7 +1,7 @@
 package com.personaltrainerweb.personaltrainerweb.service;
 
-import com.personaltrainerweb.personaltrainerweb.model.Usuario; // ou Treino
-import com.personaltrainerweb.personaltrainerweb.repository.UsuarioRepository; // ou TreinoRepository
+import com.personaltrainerweb.personaltrainerweb.model.Usuario; 
+import com.personaltrainerweb.personaltrainerweb.repository.UsuarioRepository; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -25,7 +25,7 @@ public class UsuarioService {
     // Atualizar um usuário existente
     public Usuario atualizarUsuario(Long id, Usuario usuarioAtualizado) {
         Usuario usuarioExistente = usuarioRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         usuarioExistente.setNome(usuarioAtualizado.getNome());
         usuarioExistente.setIdade(usuarioAtualizado.getIdade());
         usuarioExistente.setSexo(usuarioAtualizado.getSexo());

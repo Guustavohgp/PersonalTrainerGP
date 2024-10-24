@@ -7,7 +7,6 @@
     <title>Plano de Treino Personalizado</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Centralizar a página usando Flexbox */
         body {
             margin: 0;
             padding: 0;
@@ -78,12 +77,10 @@
             background-color: #2980b9;
         }
 
-        /* Estilo específico para o botão "Voltar" */
         .btn-back {
             margin-right: 10px;
         }
 
-        /* Container para os botões */
         .button-container {
             display: flex;
             justify-content: space-between;
@@ -91,58 +88,56 @@
         }
     </style>
     <script>
-    // Função para gerar o plano de treino
-function gerarPlano(event) {
-    event.preventDefault();  
+        // Função para gerar o plano de treino
+        function gerarPlano(event) {
+            event.preventDefault();
 
-    const nome = document.getElementById('nome').value;
-    const idade = document.getElementById('idade').value;
-    const sexo = document.getElementById('sexo').value;
-    const biotipo = document.getElementById('biotipo').value;
-    const dias = document.getElementById('dias').value;
-    const experiencia = document.getElementById('experiencia').value;
-    
-    // Alteração aqui para capturar o tipo de treino corretamente
-    const treino = document.querySelector('input[name="treino"]:checked')?.value; // Captura o valor do treino selecionado
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const sexo = document.getElementById('sexo').value;
+            const biotipo = document.getElementById('biotipo').value;
+            const dias = document.getElementById('dias').value;
+            const experiencia = document.getElementById('experiencia').value;
 
-    // Armazenar o nome do usuário no LocalStorage
-    localStorage.setItem('usuario', nome);
+            const treino = document.querySelector('input[name="treino"]:checked')?.value; // Captura o valor do treino selecionado
 
-    // Criar um objeto com os dados do plano
-    const dadosPlano = {
-        nome,
-        idade,
-        sexo,
-        biotipo,
-        dias,
-        experiencia,
-        treino
-    };
+            // Armazenar o nome do usuário no LocalStorage
+            localStorage.setItem('usuario', nome);
 
-    // Conexão com o backend
-    fetch('http://localhost:8083/api/treinos/cadastrar', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dadosPlano),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na conexão com o servidor');
+            // Criar um objeto com os dados do plano
+            const dadosPlano = {
+                nome,
+                idade,
+                sexo,
+                biotipo,
+                dias,
+                experiencia,
+                treino
+            };
+
+            // Conexão com o backend
+            fetch('http://localhost:8083/api/treinos/cadastrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dadosPlano),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na conexão com o servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&treino=${encodeURIComponent(treino)}&experiencia=${encodeURIComponent(experiencia)}`;
+                    window.location.href = resultadoUrl;
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro ao gerar o plano de treino.');  
+                });
         }
-        return response.json();
-    })
-    .then(data => {
-        // Supondo que o backend retorne um ID ou sucesso, redirecionar para a página de resultado
-        const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&treino=${encodeURIComponent(treino)}&experiencia=${encodeURIComponent(experiencia)}`;
-        window.location.href = resultadoUrl;
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao gerar o plano de treino.');  // Mensagem de erro
-    });
-}
 
     </script>
 </head>

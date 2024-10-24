@@ -39,7 +39,6 @@ public class UsuarioController {
         return "meustreinos";
     }
 
-
     @GetMapping("/pagina")
     public String pagina() {
         return "pagina";
