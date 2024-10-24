@@ -172,16 +172,16 @@ function gerarRotinaTreino(params) {
     console.log("Parâmetros recebidos:", params);
 
     // Normalizar as chaves para garantir a correspondência
-    const nivel = params.nivel.toLowerCase();
+    const experiencia = params.experiencia.toLowerCase();
     const dias = parseInt(params.dias);
 
     // Gerar rotina de treino com base nos parâmetros
-    if (params.tipoTreino === 'Funcional') {
-        planoGerado = treinoFuncional[nivel][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
-    } else if (params.tipoTreino === 'Cardio') {
-        planoGerado = treinoCardio[nivel][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
-    } else if (params.tipoTreino === 'Peso Livre') {
-        planoGerado = treinoPesoLivre[nivel][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
+    if (params.treino === 'Funcional') {
+        planoGerado = treinoFuncional[experiencia][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
+    } else if (params.treino === 'Cardio') {
+        planoGerado = treinoCardio[experiencia][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
+    } else if (params.treino === 'Peso Livre') {
+        planoGerado = treinoPesoLivre[experiencia][dias] || ['Erro: Não foi possível encontrar um treino para esses parâmetros.'];
     } else {
         planoGerado = ['Tipo de treino não reconhecido.'];
     }

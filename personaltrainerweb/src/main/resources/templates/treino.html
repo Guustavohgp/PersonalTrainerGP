@@ -91,37 +91,59 @@
         }
     </style>
     <script>
-        // Função para gerar o plano de treino
-        function gerarPlano(event) {
-            event.preventDefault();  // Evita o reload da página
+    // Função para gerar o plano de treino
+function gerarPlano(event) {
+    event.preventDefault();  
 
-            const nome = document.getElementById('nome').value;
-            const idade = document.getElementById('idade').value;
-            const sexo = document.getElementById('sexo').value;
-            const biotipo = document.getElementById('biotipo').value;
-            const dias = document.getElementById('dias').value;
-            const nivel = document.getElementById('nivel').value;
-            const tipoTreino = document.querySelector('input[name="tipoTreino"]:checked').value;
+    const nome = document.getElementById('nome').value;
+    const idade = document.getElementById('idade').value;
+    const sexo = document.getElementById('sexo').value;
+    const biotipo = document.getElementById('biotipo').value;
+    const dias = document.getElementById('dias').value;
+    const experiencia = document.getElementById('experiencia').value;
+    
+    // Alteração aqui para capturar o tipo de treino corretamente
+    const treino = document.querySelector('input[name="treino"]:checked')?.value; // Captura o valor do treino selecionado
 
-            // Armazenar o nome do usuário no LocalStorage
-            localStorage.setItem('usuario', nome);
+    // Armazenar o nome do usuário no LocalStorage
+    localStorage.setItem('usuario', nome);
 
-            // Construir a URL para a página de resultado
-            const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&tipoTreino=${encodeURIComponent(tipoTreino)}&nivel=${encodeURIComponent(nivel)}`;
-            // Redirecionar para a página de resultado com parâmetros na URL
-            window.location.href = resultadoUrl;
+    // Criar um objeto com os dados do plano
+    const dadosPlano = {
+        nome,
+        idade,
+        sexo,
+        biotipo,
+        dias,
+        experiencia,
+        treino
+    };
+
+    // Conexão com o backend
+    fetch('http://localhost:8083/api/treinos/cadastrar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dadosPlano),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na conexão com o servidor');
         }
+        return response.json();
+    })
+    .then(data => {
+        // Supondo que o backend retorne um ID ou sucesso, redirecionar para a página de resultado
+        const resultadoUrl = `/resultado?nome=${encodeURIComponent(nome)}&idade=${encodeURIComponent(idade)}&sexo=${encodeURIComponent(sexo)}&biotipo=${encodeURIComponent(biotipo)}&dias=${encodeURIComponent(dias)}&treino=${encodeURIComponent(treino)}&experiencia=${encodeURIComponent(experiencia)}`;
+        window.location.href = resultadoUrl;
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao gerar o plano de treino.');  // Mensagem de erro
+    });
+}
 
-        // Ao carregar a página, exibe o usuário
-        window.onload = function () {
-            const usuario = localStorage.getItem('usuario');
-            const saudacao = document.getElementById('saudacao');
-            if (usuario) {
-                saudacao.textContent = `Preencha seus dados, ${usuario}!`;
-            } else {
-                saudacao.textContent = "Preencha seus dados, Visitante!";
-            }
-        };
     </script>
 </head>
 
@@ -161,29 +183,29 @@
             </select>
 
             <label>Tipo de Treino:</label>
-            <div id="tipoTreino">
+            <div id="treino">
                 <div class="radio-option">
                     <label>
-                        <input type="radio" id="funcional" name="tipoTreino" value="Funcional" required>
+                        <input type="radio" id="funcional" name="treino" value="Funcional" required>
                         Funcional
                     </label>
                 </div>
                 <div class="radio-option">
                     <label>
-                        <input type="radio" id="cardio" name="tipoTreino" value="Cardio">
+                        <input type="radio" id="cardio" name="treino" value="Cardio">
                         Cardio
                     </label>
                 </div>
                 <div class="radio-option">
                     <label>
-                        <input type="radio" id="pesoLivre" name="tipoTreino" value="Peso Livre">
+                        <input type="radio" id="pesoLivre" name="treino" value="Peso Livre">
                         Peso Livre
                     </label>
                 </div>
             </div>
 
-            <label for="nivel">Nível de Experiência:</label>
-            <select id="nivel" name="nivel" required>
+            <label for="experiencia">Nível de Experiência:</label>
+            <select id="experiencia" name="experiencia" required>
                 <option value="" disabled selected></option>
                 <option value="Iniciante">Iniciante</option>
                 <option value="Intermediário">Intermediário</option>

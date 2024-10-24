@@ -66,8 +66,8 @@ public class UsuarioController {
             @RequestParam String sexo,
             @RequestParam String biotipo,
             @RequestParam String dias,
-            @RequestParam String tipoTreino,
-            @RequestParam String nivel,
+            @RequestParam String treino,
+            @RequestParam String experiencia,
             Model model) {
         // Adiciona os parâmetros ao modelo
         model.addAttribute("nome", nome);
@@ -75,8 +75,8 @@ public class UsuarioController {
         model.addAttribute("sexo", sexo);
         model.addAttribute("biotipo", biotipo);
         model.addAttribute("dias", dias);
-        model.addAttribute("tipoTreino", tipoTreino);
-        model.addAttribute("nivel", nivel);
+        model.addAttribute("treino", treino);
+        model.addAttribute("experiencia", experiencia);
         return "resultado";
     }
 }

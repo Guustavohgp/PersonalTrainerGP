@@ -4,28 +4,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "treino") 
+@Table(name = "treino") // Nome da tabela no banco de dados
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática de IDs
     private Long id;
 
-    private int idade;
-    private String sexo;
-    private String biotipo;
-    private String treino;
-    private String experiencia;
-
-    // Relacionamento com UsuarioCadastro
-    @ManyToOne
-    @JoinColumn(name = "usuario", nullable = false)  // Cria uma FK 
-    private UsuarioCadastro usuarioCadastro;
+    private String nome; // Nome do usuário
+    private int idade; // Idade do usuário
+    private String sexo; // Sexo do usuário
+    private String biotipo; // Biotipo do usuário
+    private String treino; // Tipo de treino
+    private String experiencia; // Nível de experiência
+    private int dias; // Dias de treino por semana
 
     // Getters e Setters
     public Long getId() {
@@ -34,6 +29,14 @@ public class Usuario {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getIdade() {
@@ -76,11 +79,11 @@ public class Usuario {
         this.experiencia = experiencia;
     }
 
-    public UsuarioCadastro getUsuarioCadastro() {
-        return usuarioCadastro;
+    public int getDias() {
+        return dias;
     }
 
-    public void setUsuarioCadastro(UsuarioCadastro usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
+    public void setDias(int dias) {
+        this.dias = dias;
     }
 }

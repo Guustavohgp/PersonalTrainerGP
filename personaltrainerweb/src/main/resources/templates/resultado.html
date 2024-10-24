@@ -26,7 +26,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 700px;
             text-align: left;
-            
         }
 
         h1 {
@@ -72,59 +71,53 @@
         <p id="resultado"></p>
         <a href="/treino" class="btn">Voltar ao Treino</a>
         <script src="js/treino.js" defer></script>
-    </div>
+        <script>
+             // Função para obter os parâmetros da URL
+             function obterParametros() {
+                const params = new URLSearchParams(window.location.search);
+                const nome = params.get('nome') || "N/A"; // Definindo um valor padrão
+                const idade = params.get('idade') || "N/A"; // Definindo um valor padrão
+                const sexo = params.get('sexo') || "N/A"; // Definindo um valor padrão
+                const biotipo = params.get('biotipo') || "N/A"; // Definindo um valor padrão
+                const dias = params.get('dias') || "N/A"; // Definindo um valor padrão
+                const treino = params.get('treino') || "N/A"; // Definindo um valor padrão
+                const experiencia = params.get('experiencia') || "N/A"; // Definindo um valor padrão
 
-    <script>
-        // Função para obter os parâmetros da URL
-        function obterParametros() {
-            const params = new URLSearchParams(window.location.search);
-            const nome = params.get('nome');
-            const idade = params.get('idade');
-            const sexo = params.get('sexo');
-            const biotipo = params.get('biotipo');
-            const dias = params.get('dias');
-            const tipoTreino = params.get('tipoTreino');
-            const nivel = params.get('nivel');
-
-            return { nome, idade, sexo, biotipo, dias, tipoTreino, nivel };
-        }
-
-        // Função para exibir as informações na página
-        function exibirInformacoes() {
-            const params = obterParametros();
-            const resultado = document.getElementById('resultado');
-
-            // Verifica se o tipo de treino é "peso livre"
-            if (params.tipoTreino.toLowerCase() === "peso livre") {
-                resultado.innerHTML = `
-                    <strong>Nome:</strong> ${params.nome}<br>
-                    <strong>Idade:</strong> ${params.idade}<br>
-                    <strong>Sexo:</strong> ${params.sexo}<br>
-                    <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
-                    <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
-                    <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
-                    <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
-                `;
-            } else {
-                resultado.innerHTML = `
-                    <strong>Nome:</strong> ${params.nome}<br>
-                    <strong>Idade:</strong> ${params.idade}<br>
-                    <strong>Sexo:</strong> ${params.sexo}<br>
-                    <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
-                    <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
-                    <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
-                    <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
-                `;
+                return { nome, idade, sexo, biotipo, dias, treino, experiencia };
             }
 
-            // Chama a função de gerar treino
-            const planoTreino = gerarRotinaTreino(params);
-            resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
-        }
+            // Função para gerar a rotina de treino
+            function gerarRotinaTreino(params) {
+                // Chame a função que já existe no seu arquivo scripts.js
+                // Supondo que a função no scripts.js se chama 'gerarTreino'
+                const plano = gerarTreino(params);
+                return plano;
+            }
 
-        // Chama a função para exibir as informações ao carregar a página
-        window.onload = exibirInformacoes;
-    </script>
+            // Função para exibir as informações na página
+            function exibirInformacoes() {
+                const params = obterParametros();
+                const resultado = document.getElementById('resultado');
+
+                resultado.innerHTML = ` 
+                    <strong>Nome:</strong> ${params.nome}<br>
+                    <strong>Idade:</strong> ${params.idade}<br>
+                    <strong>Sexo:</strong> ${params.sexo}<br>
+                    <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
+                    <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
+                    <strong>Tipo de Treino:</strong> ${params.treino}<br>
+                    <strong>Nível de Experiência:</strong> ${params.experiencia}<br><br>
+                `;
+
+                // Aqui você pode adicionar a lógica para gerar e exibir o plano de treino
+                const planoTreino = gerarRotinaTreino(params);
+                resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
+            }
+
+            // Chama a função para exibir as informações ao carregar a página
+            window.onload = exibirInformacoes;
+        </script>
+    </div>
 </body>
 
 </html>
