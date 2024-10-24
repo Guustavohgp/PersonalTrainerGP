@@ -72,48 +72,62 @@
         <a href="/treino" class="btn">Voltar ao Treino</a>
         <script src="js/treino.js" defer></script>
         <script>
-             // Função para obter os parâmetros da URL
-             function obterParametros() {
+            // Função para obter os parâmetros da URL
+            function obterParametros() {
                 const params = new URLSearchParams(window.location.search);
-                const nome = params.get('nome') || "N/A"; // Definindo um valor padrão
-                const idade = params.get('idade') || "N/A"; // Definindo um valor padrão
-                const sexo = params.get('sexo') || "N/A"; // Definindo um valor padrão
-                const biotipo = params.get('biotipo') || "N/A"; // Definindo um valor padrão
-                const dias = params.get('dias') || "N/A"; // Definindo um valor padrão
-                const treino = params.get('treino') || "N/A"; // Definindo um valor padrão
-                const experiencia = params.get('experiencia') || "N/A"; // Definindo um valor padrão
-
-                return { nome, idade, sexo, biotipo, dias, treino, experiencia };
+                const nome = params.get('nome');
+                const idade = params.get('idade');
+                const sexo = params.get('sexo');
+                const biotipo = params.get('biotipo');
+                const dias = params.get('dias');
+                const tipoTreino = params.get('tipoTreino');
+                const nivel = params.get('nivel');
+        
+                return { nome, idade, sexo, biotipo, dias, tipoTreino, nivel };
             }
-
+        
             // Função para gerar a rotina de treino
             function gerarRotinaTreino(params) {
-                // Chame a função que já existe no seu arquivo scripts.js
-                // Supondo que a função no scripts.js se chama 'gerarTreino'
-                const plano = gerarTreino(params);
-                return plano;
+                const treinoGerado = `Exemplo de treino gerado para ${params.nome} (${params.nivel}): Um plano de treino básico para ${params.tipoTreino} com ${params.dias} dias de treino.`;
+        
+                // Salva o treino no Local Storage
+                salvarTreinoHistorico(params.nome, treinoGerado);
+                
+                return treinoGerado;
             }
-
+        
+            // Função para salvar o treino no Local Storage
+            function salvarTreinoHistorico(nomeUsuario, treino) {
+                const historico = JSON.parse(localStorage.getItem('historicoTreinos')) || {};
+                
+                if (!historico[nomeUsuario]) {
+                    historico[nomeUsuario] = [];
+                }
+                
+                historico[nomeUsuario].push(treino);
+                localStorage.setItem('historicoTreinos', JSON.stringify(historico));
+            }
+        
             // Função para exibir as informações na página
             function exibirInformacoes() {
                 const params = obterParametros();
                 const resultado = document.getElementById('resultado');
-
+        
                 resultado.innerHTML = ` 
                     <strong>Nome:</strong> ${params.nome}<br>
                     <strong>Idade:</strong> ${params.idade}<br>
                     <strong>Sexo:</strong> ${params.sexo}<br>
                     <strong>Biotipo Corporal:</strong> ${params.biotipo}<br>
                     <strong>Dias Disponíveis para Treino:</strong> ${params.dias}<br>
-                    <strong>Tipo de Treino:</strong> ${params.treino}<br>
-                    <strong>Nível de Experiência:</strong> ${params.experiencia}<br><br>
+                    <strong>Tipo de Treino:</strong> ${params.tipoTreino}<br>
+                    <strong>Nível de Experiência:</strong> ${params.nivel}<br><br>
                 `;
-
-                // Aqui você pode adicionar a lógica para gerar e exibir o plano de treino
+        
+                // Chama a função de gerar treino
                 const planoTreino = gerarRotinaTreino(params);
                 resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
             }
-
+        
             // Chama a função para exibir as informações ao carregar a página
             window.onload = exibirInformacoes;
         </script>
