@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Treinos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Adicione seu estilo aqui, se necessário */
+        .container {
+            padding: 40px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            margin: 20px auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meus Treinos</h1>
+        <div id="treinos"></div>
+        <a href="/treino" class="btn">Voltar ao Treino</a>
+    </div>
+    
+    <script>
+        // Função para exibir os treinos salvos
+        function exibirTreinos() {
+            const nomeUsuario = "NomeDoUsuario"; // Substitua pelo nome do usuário ou obtenha via URL
+            const historico = JSON.parse(localStorage.getItem('historicoTreinos')) || {};
+            const treinosDiv = document.getElementById('treinos');
+
+            if (historico[nomeUsuario] && historico[nomeUsuario].length > 0) {
+                historico[nomeUsuario].forEach(treino => {
+                    const treinoElement = document.createElement('p');
+                    treinoElement.innerText = treino;
+                    treinosDiv.appendChild(treinoElement);
+                });
+            } else {
+                treinosDiv.innerText = 'Nenhum treino salvo.';
+            }
+        }
+
+        // Chama a função para exibir os treinos ao carregar a página
+        window.onload = exibirTreinos;
+    </script>
+</body>
+</html>
