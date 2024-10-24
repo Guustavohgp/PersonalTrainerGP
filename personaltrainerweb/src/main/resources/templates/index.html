@@ -25,6 +25,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 300px;
+            max-width: 90%; /* Limita a largura em telas menores */
         }
 
         h2 {
@@ -40,7 +41,7 @@
 
         input[type="text"],
         input[type="password"] {
-            width: 100%;
+            width: calc(100% - 22px); /* Corrige a largura para não ocupar o contêiner completo */
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
@@ -48,7 +49,7 @@
         }
 
         button {
-            width: 100%;
+            width: calc(100% - 22px); /* Ajusta o tamanho do botão */
             padding: 10px;
             background-color: #3498db;
             color: white;
@@ -80,7 +81,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h2>Personal Trainer GP</h2>
