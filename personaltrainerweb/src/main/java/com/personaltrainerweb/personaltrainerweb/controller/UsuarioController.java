@@ -34,9 +34,9 @@ public class UsuarioController {
         return "treino";
     }
 
-    @GetMapping("/treinos")
-    public String treinos() {
-        return "treinos";
+    @GetMapping("/meustreinos")
+    public String meustreinos() {
+        return "meustreinos";
     }
 
 
