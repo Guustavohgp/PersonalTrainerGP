@@ -93,13 +93,18 @@
             event.preventDefault();
 
             const nome = document.getElementById('nome').value;
-            const idade = document.getElementById('idade').value;
+            const idade = parseInt(document.getElementById('idade').value, 10); 
             const sexo = document.getElementById('sexo').value;
             const biotipo = document.getElementById('biotipo').value;
             const dias = document.getElementById('dias').value;
             const experiencia = document.getElementById('experiencia').value;
+            const treino = document.querySelector('input[name="treino"]:checked')?.value; 
 
-            const treino = document.querySelector('input[name="treino"]:checked')?.value; // Captura o valor do treino selecionado
+            // Verifica se a idade está dentro da faixa permitida
+            if (idade < 12 || idade > 80) {
+                alert('Idade não permitida. A idade deve estar entre 12 e 80 anos.');
+                return; 
+            }
 
             // Armazenar o nome do usuário no LocalStorage
             localStorage.setItem('usuario', nome);
@@ -135,10 +140,9 @@
                 })
                 .catch(error => {
                     console.error('Erro:', error);
-                    alert('Ocorreu um erro ao gerar o plano de treino.');  
+                    alert('Ocorreu um erro ao gerar o plano de treino.');
                 });
         }
-
     </script>
 </head>
 
