@@ -14,25 +14,25 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('/imagens/index.png'); 
+            background-image: url('/imagens/index.png');
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
         }
 
         .overlay {
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             width: 350px;
             text-align: center;
         }
 
         h2 {
-            color: white; 
-            font-size: 34px; 
-            font-weight: bold; 
+            color: white;
+            font-size: 34px;
+            font-weight: bold;
             margin-bottom: 20px;
         }
 
@@ -40,10 +40,10 @@
             display: block;
             margin: 10px 0 5px;
             text-align: left;
-            color: #f2f2f2; 
+            color: #f2f2f2;
             font-size: 20px;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
 
         input[type="text"],
@@ -59,8 +59,8 @@
 
         input[type="text"]:focus,
         input[type="password"]:focus {
-            border-color: #3498db; 
-            outline: none; 
+            border-color: #3498db;
+            outline: none;
         }
 
         button {
@@ -81,12 +81,12 @@
         }
 
         a {
-            color: white; 
+            color: white;
             text-decoration: none;
             display: block;
             margin-top: 15px;
             font-size: 16px;
-            text-align: center; 
+            text-align: center;
         }
 
         a:hover {
@@ -94,9 +94,9 @@
         }
         /* Estilo para a mensagem de login */
         .mensagem {
-            color: greenyellow; 
-            margin-top: 15px; 
-            font-size: 16px; 
+            color: greenyellow;
+            margin-top: 15px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -106,61 +106,58 @@
             <h2>Seja Bem Vindo ao</h2>
             <h2>Personal Trainer GP</h2>
 
-        <form id="loginForm" onsubmit="return validarLogin()">
-            <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario" required>
+            <form id="loginForm" onsubmit="return validarLogin()">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
 
-            <button type="submit">Entrar</button>
-        </form>
+                <button type="submit">Entrar</button>
+            </form>
 
-        <div id="mensagemLogin" class="mensagem"></div>
-        <p><a href="/cadastro">Criar Conta</a></p>
-    </div>
+            <div id="mensagemLogin" class="mensagem"></div>
+            <p><a href="/cadastro">Criar Conta</a></p>
+        </div>
+        <script>
+            function validarLogin() {
+                const usuario = document.getElementById("usuario").value;
+                const senha = document.getElementById("senha").value;
+                const mensagemLogin = document.getElementById("mensagemLogin");
 
-    <script>
-        function validarLogin() {
-            const usuario = document.getElementById("usuario").value;
-            const senha = document.getElementById("senha").value;
-            const mensagemLogin = document.getElementById("mensagemLogin");
-
-            // Dados do formulário
-            const dados = {
-                usuario: usuario,
-                senha: senha
-            };
-
-            // Enviar a requisição POST ao backend
-            fetch("http://localhost:8083/usuarios/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(dados)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json(); // Retorna a resposta em formato JSON
-                    } else {
-                        throw new Error("Usuário ou senha incorretos!");
-                    }
+                // Dados do formulário
+                const dados = {
+                    usuario: usuario,
+                    senha: senha
+                };
+                // Enviar a requisição POST ao backend
+                fetch("http://localhost:8083/usuarios/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(dados)
                 })
-                .then(data => {
-                    mensagemLogin.textContent = "Login realizado com sucesso!";
-                    // Redireciona para a página 
-                    setTimeout(() => {
-                        window.location.href = "/pagina";
-                    }, 1000);
-                })
-                .catch(error => {
-                    mensagemLogin.textContent = error.message;
-                });
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json(); // Retorna a resposta em formato JSON
+                        } else {
+                            throw new Error("Usuário ou senha incorretos!");
+                        }
+                    })
+                    .then(data => {
+                        mensagemLogin.textContent = "Login realizado com sucesso!";
+                        // Redireciona para a página 
+                        setTimeout(() => {
+                            window.location.href = "/pagina";
+                        }, 1000);
+                    })
+                    .catch(error => {
+                        mensagemLogin.textContent = error.message;
+                    });
 
-            return false;  // Impede o envio imediato do formulário
-        }
-    </script>
+                return false;  // Impede o envio imediato do formulário
+            }
+        </script>
 </body>
-
 </html>

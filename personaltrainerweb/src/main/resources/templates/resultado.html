@@ -14,30 +14,31 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('/imagens/resultado.png'); /* Imagem de fundo */
+            background-image: url('/imagens/resultado.png');
+            /* Imagem de fundo */
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.8); /* Fundo translúcido mais claro */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             width: 700px;
             max-width: 90%;
-            text-align: left; /* Alinhamento à esquerda */
+            text-align: left;
         }
 
         h1 {
-            color: #2c3e50; /* Cor do título */
+            color: #2c3e50;
             margin-bottom: 10px;
         }
 
         p {
             font-size: 16px;
-            color: #333; /* Cor do texto */
+            color: #333;
             margin: 10px 0;
         }
 
@@ -46,19 +47,19 @@
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 10px;
-            color: #2c3e50; /* Cor do título do plano */
+            color: #2c3e50;
         }
 
         .button-container {
             display: flex;
-            justify-content: space-between; /* Distribui os botões */
+            justify-content: space-between;
             margin-top: 20px;
         }
 
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #3498db; /* Cor do botão */
+            background-color: #3498db;
             color: white;
             border: none;
             border-radius: 5px;
@@ -69,19 +70,18 @@
         }
 
         .btn:hover {
-            background-color: #2980b9; /* Efeito hover */
+            background-color: #2980b9;
         }
 
         .btn-red {
-            background-color: #e74c3c; /* Cor do botão vermelho */
+            background-color: #e74c3c;
         }
 
         .btn-red:hover {
-            background-color: #c0392b; /* Efeito hover para botão vermelho */
+            background-color: #c0392b;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Treino Gerado</h1>
@@ -103,13 +103,11 @@
 
                 return { nome, idade, sexo, biotipo, dias, treino, experiencia };
             }
-
             // Função para gerar a rotina de treino
             function gerarRotinaTreino(params) {
                 const plano = gerarTreino(params);
                 return plano;
             }
-
             // Função para exibir as informações na página
             function exibirInformacoes() {
                 const params = obterParametros();
@@ -129,11 +127,9 @@
                 const planoTreino = gerarRotinaTreino(params);
                 resultado.innerHTML += `<strong>Plano de Treino:</strong><br>${planoTreino}`;
             }
-
             // Chama a função para exibir as informações ao carregar a página
             window.onload = exibirInformacoes;
         </script>
     </div>
 </body>
-
 </html>
