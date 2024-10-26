@@ -14,27 +14,30 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-image: url('/imagens/resultado.png'); /* Imagem de fundo */
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo translúcido mais claro */
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             width: 700px;
-            text-align: left;
+            max-width: 90%;
+            text-align: left; /* Alinhamento à esquerda */
         }
 
         h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
+            color: #2c3e50; /* Cor do título */
+            margin-bottom: 10px;
         }
 
         p {
             font-size: 16px;
-            color: #333;
+            color: #333; /* Cor do texto */
             margin: 10px 0;
         }
 
@@ -43,38 +46,38 @@
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 10px;
+            color: #2c3e50; /* Cor do título do plano */
         }
 
         .button-container {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between; /* Distribui os botões */
             margin-top: 20px;
         }
 
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #3498db;
+            background-color: #3498db; /* Cor do botão */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             text-decoration: none;
-            margin-right: 20px;
+            transition: background-color 0.3s;
         }
 
         .btn:hover {
-            background-color: #2980b9;
+            background-color: #2980b9; /* Efeito hover */
         }
 
         .btn-red {
-            background-color: #e74c3c;
-            margin-left: auto;
+            background-color: #e74c3c; /* Cor do botão vermelho */
         }
 
         .btn-red:hover {
-            background-color: #c0392b;
+            background-color: #c0392b; /* Efeito hover para botão vermelho */
         }
     </style>
 </head>
