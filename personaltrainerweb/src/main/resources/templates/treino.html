@@ -14,26 +14,29 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-image: url('/imagens/pagina.png'); /* Imagem de fundo */
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            background-color: white;
+            background-color: rgba(0, 0, 0, 0.6); /* Fundo translúcido */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             width: 700px;
+            max-width: 90%;
             text-align: center;
         }
 
         h1 {
-            color: #2c3e50;
+            color: white; /* Cor do título */
             margin-bottom: 10px;
         }
 
         h2 {
-            color: #34495e;
+            color: #f2f2f2; /* Cor do subtítulo */
             margin-bottom: 20px;
         }
 
@@ -42,7 +45,7 @@
             text-align: left;
             margin-bottom: 5px;
             font-size: 14px;
-            color: #333;
+            color: #f2f2f2; /* Cor das labels */
         }
 
         input[type="text"],
@@ -71,6 +74,7 @@
             font-size: 14px;
             margin-bottom: 10px;
             text-align: center;
+            transition: background-color 0.3s;
         }
 
         .btn:hover {
@@ -79,6 +83,11 @@
 
         .btn-back {
             margin-right: 10px;
+            background-color: #e74c3c; /* Cor do botão voltar */
+        }
+
+        .btn-back:hover {
+            background-color: #c0392b;
         }
 
         .button-container {

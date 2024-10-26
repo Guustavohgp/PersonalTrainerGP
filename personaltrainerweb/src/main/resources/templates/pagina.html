@@ -13,21 +13,24 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-image: url('/imagens/pagina.png'); /* Imagem de fundo */
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            background-color: white;
+            background-color: rgba(0, 0, 0, 0.6); /* Fundo translúcido */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             text-align: center;
             width: 300px;
+            max-width: 90%;
         }
 
         h1 {
-            color: #2c3e50;
+            color: white; /* Cor do título */
             margin-bottom: 20px;
         }
 
@@ -41,6 +44,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
