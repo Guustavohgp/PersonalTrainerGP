@@ -14,8 +14,13 @@ public class UsuarioCadastroService {
 
     // Método para cadastrar usuário
     public UsuarioCadastro cadastrarUsuario(UsuarioCadastro usuario) {
-        // Criptografa a senha antes de salvar
-        usuario.setSenha(usuario.getSenha());
+        // Verifica se o usuário já existe
+        if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
+            throw new RuntimeException("Usuário já cadastrado");
+        }
+
+        // Criptografa a senha antes de salvar (implementar a lógica de criptografia aqui)
+        usuario.setSenha(usuario.getSenha()); 
         return usuarioRepository.save(usuario);
     }
 

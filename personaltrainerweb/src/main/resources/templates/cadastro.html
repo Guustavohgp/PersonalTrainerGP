@@ -118,9 +118,13 @@
 
         /* Estilo para a mensagem de cadastro */
         .mensagem {
-            color: greenyellow;
+            color: greenyellow; /* Cor padrão para mensagens de sucesso */
             margin-top: 15px;
             font-size: 16px;
+        }
+
+        .mensagem.erro {
+            color: red; /* Cor para mensagens de erro */
         }
     </style>
 </head>
@@ -183,13 +187,15 @@
                         mensagemCadastro.textContent = "Cadastro realizado com sucesso!";
                         mensagemCadastro.classList.remove("erro");
 
-                        // Redireciona para a página 
+                        // Redireciona para a página
                         setTimeout(() => {
                             window.location.href = "/index";
                         }, 1000);
                     } else {
-                        mensagemCadastro.textContent = "Erro ao cadastrar usuário!";
-                        mensagemCadastro.classList.add("erro");
+                        response.json().then(data => {
+                            mensagemCadastro.textContent = data.message; // Mensagem do backend
+                            mensagemCadastro.classList.add("erro"); // Adiciona a classe de erro
+                        });
                     }
                 })
                 .catch(error => {
@@ -198,7 +204,8 @@
                     mensagemCadastro.classList.add("erro");
                 });
 
-            return false;  // Evita o envio padrão do formulário
+            // Impede o envio do formulário padrão
+            return false;
         }
     </script>
 </body>

@@ -45,7 +45,7 @@ public class UsuarioController {
     }
 
     // Rota para autenticar login
-    @PostMapping("/usuarios/login")
+    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UsuarioCadastro usuario) {
         boolean autenticado = usuarioCadastroService.autenticar(usuario.getUsuario(), usuario.getSenha());
 
@@ -57,8 +57,8 @@ public class UsuarioController {
         }
     }
 
-    // Listar todos os usuários
-    @GetMapping("/listarUsuarios")
+    // Listar todos os usuários (se necessário)
+    @GetMapping("/listar")
     @ResponseBody
     public List<UsuarioCadastro> listarUsuarios() {
         return usuarioCadastroService.listarUsuarios();
