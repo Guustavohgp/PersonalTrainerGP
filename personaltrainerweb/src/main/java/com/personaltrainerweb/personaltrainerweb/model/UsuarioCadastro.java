@@ -1,9 +1,7 @@
 package com.personaltrainerweb.personaltrainerweb.model;
 
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class UsuarioCadastro {
     private String nome;
 
     @NotNull(message = "O usuário é obrigatório")
-    @Column(unique = true) 
+    @Column(unique = true)
     private String usuario;
 
     @NotNull(message = "A senha é obrigatória")

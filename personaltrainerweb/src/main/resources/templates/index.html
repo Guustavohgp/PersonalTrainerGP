@@ -101,7 +101,7 @@
         }
 
         .erro {
-            color: red; /* Estilo para mensagens de erro */
+            color: red;
         }
     </style>
 </head>
@@ -130,7 +130,7 @@
                 const usuario = document.getElementById("usuario").value;
                 const senha = document.getElementById("senha").value;
                 const mensagemLogin = document.getElementById("mensagemLogin");
-                mensagemLogin.classList.remove("erro"); // Remove classe de erro antes de cada nova tentativa
+                mensagemLogin.classList.remove("erro");
 
                 // Dados do formulário
                 const dados = {
@@ -155,15 +155,15 @@
                     })
                     .then(data => {
                         mensagemLogin.textContent = "Login realizado com sucesso!";
-                        mensagemLogin.classList.remove("erro"); // Remove classe de erro em caso de sucesso
+                        mensagemLogin.classList.remove("erro");
                         // Redireciona para a página 
                         setTimeout(() => {
-                            window.location.href = "/pagina"; // Altere para a página correta
+                            window.location.href = "/pagina";
                         }, 1000);
                     })
                     .catch(error => {
                         mensagemLogin.textContent = error.message;
-                        mensagemLogin.classList.add("erro"); // Adiciona classe de erro
+                        mensagemLogin.classList.add("erro");
                     });
 
                 return false; // Impede o envio imediato do formulário
@@ -171,4 +171,5 @@
         </script>
     </div>
 </body>
+
 </html>

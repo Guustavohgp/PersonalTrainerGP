@@ -1,7 +1,7 @@
 package com.personaltrainerweb.personaltrainerweb.service;
 
-import com.personaltrainerweb.personaltrainerweb.model.Usuario; 
-import com.personaltrainerweb.personaltrainerweb.repository.UsuarioRepository; 
+import com.personaltrainerweb.personaltrainerweb.model.Usuario;
+import com.personaltrainerweb.personaltrainerweb.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

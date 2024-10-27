@@ -14,14 +14,15 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('/imagens/treino.png'); 
+            background-image: url('/imagens/treino.png');
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
         }
+
         /* Fundo translúcido */
         .container {
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -31,12 +32,12 @@
         }
 
         h1 {
-            color: white; 
+            color: white;
             margin-bottom: 10px;
         }
 
         h2 {
-            color: #f2f2f2; 
+            color: #f2f2f2;
             margin-bottom: 20px;
         }
 
@@ -45,7 +46,7 @@
             text-align: left;
             margin-bottom: 5px;
             font-size: 14px;
-            color: #f2f2f2; 
+            color: #f2f2f2;
         }
 
         input[type="text"],
@@ -83,7 +84,7 @@
 
         .btn-back {
             margin-right: 10px;
-            background-color: #e74c3c; 
+            background-color: #e74c3c;
         }
 
         .btn-back:hover {
@@ -102,17 +103,17 @@
             event.preventDefault();
 
             const nome = document.getElementById('nome').value;
-            const idade = parseInt(document.getElementById('idade').value, 10); 
+            const idade = parseInt(document.getElementById('idade').value, 10);
             const sexo = document.getElementById('sexo').value;
             const biotipo = document.getElementById('biotipo').value;
             const dias = document.getElementById('dias').value;
             const experiencia = document.getElementById('experiencia').value;
-            const treino = document.querySelector('input[name="treino"]:checked')?.value; 
+            const treino = document.querySelector('input[name="treino"]:checked')?.value;
 
             // Verifica se a idade está dentro da faixa permitida
             if (idade < 12 || idade > 80) {
                 alert('Idade não permitida. A idade deve estar entre 12 e 80 anos.');
-                return; 
+                return;
             }
 
             // Armazenar o nome do usuário no LocalStorage
@@ -154,6 +155,7 @@
         }
     </script>
 </head>
+
 <body>
     <div class="container">
         <h1>Crie Seu Plano de Treino</h1>
@@ -226,4 +228,5 @@
         </form>
     </div>
 </body>
+
 </html>

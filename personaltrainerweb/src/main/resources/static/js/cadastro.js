@@ -22,35 +22,34 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
     };
 
     // Envia uma requisição POST para o backend
-    fetch("/cadastrar", {  
+    fetch("/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(usuarioCadastro)
     })
-    .then(response => {
-        if (response.ok) {
-            return response.json(); // Supondo que a resposta do servidor seja JSON
-        } else {
-            // Tratar resposta com erro de usuário já existente
-            return response.json().then(err => {
-                throw new Error(err.message || "Erro ao cadastrar o usuário");
-            });
-        }
-    })
-    .then(data => {
-        // Exibe mensagem de sucesso
-        mensagemCadastro.textContent = "Usuário cadastrado com sucesso!";
-        mensagemCadastro.classList.remove("erro");
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then(err => {
+                    throw new Error(err.message || "Erro ao cadastrar o usuário");
+                });
+            }
+        })
+        .then(data => {
+            // Exibe mensagem de sucesso
+            mensagemCadastro.textContent = "Usuário cadastrado com sucesso!";
+            mensagemCadastro.classList.remove("erro");
 
-        // Redireciona para outra página 
-        setTimeout(() => {
-            window.location.href = "/index";
-        }, 1000);
-    })
-    .catch(error => {
-        mensagemCadastro.textContent = error.message;
-        mensagemCadastro.classList.add("erro");
-    });
+            // Redireciona para outra página 
+            setTimeout(() => {
+                window.location.href = "/index";
+            }, 1000);
+        })
+        .catch(error => {
+            mensagemCadastro.textContent = error.message;
+            mensagemCadastro.classList.add("erro");
+        });
 });
