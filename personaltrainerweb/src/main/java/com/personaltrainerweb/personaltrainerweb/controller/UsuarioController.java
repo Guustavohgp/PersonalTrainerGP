@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro;
 import com.personaltrainerweb.personaltrainerweb.service.UsuarioCadastroService;
-import java.util.List;
 
 @Controller
 public class UsuarioController {
@@ -55,13 +54,6 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("{\"message\":\"Usuário ou senha incorretos!\"}");
         }
-    }
-
-    // Listar todos os usuários (se necessário)
-    @GetMapping("/listar")
-    @ResponseBody
-    public List<UsuarioCadastro> listarUsuarios() {
-        return usuarioCadastroService.listarUsuarios();
     }
 
     @GetMapping("/resultado")

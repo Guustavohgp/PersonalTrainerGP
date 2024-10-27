@@ -1,8 +1,12 @@
 package com.personaltrainerweb.personaltrainerweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
+import java.util.Optional;
 import com.personaltrainerweb.personaltrainerweb.model.UsuarioCadastro;
 import com.personaltrainerweb.personaltrainerweb.repository.UsuarioCadastroRepository;
 
@@ -16,11 +20,10 @@ public class UsuarioCadastroService {
     public UsuarioCadastro cadastrarUsuario(UsuarioCadastro usuario) {
         // Verifica se o usuário já existe
         if (usuarioRepository.findByUsuario(usuario.getUsuario()) != null) {
-            throw new RuntimeException("Usuário já cadastrado");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já cadastrado");
         }
 
-        // Criptografa a senha antes de salvar (implementar a lógica de criptografia aqui)
-        usuario.setSenha(usuario.getSenha()); 
+        // Não há mais criptografia (conforme sua solicitação)
         return usuarioRepository.save(usuario);
     }
 
@@ -34,8 +37,19 @@ public class UsuarioCadastroService {
         return usuarioRepository.findByUsuario(usuario);
     }
 
+    // Método para buscar usuário pelo ID
+    public UsuarioCadastro buscarPorId(Long id) {
+        Optional<UsuarioCadastro> usuario = usuarioRepository.findById(id);
+        return usuario.orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado")
+        );
+    }
+
     // Método para deletar usuário pelo ID
     public void deletarUsuario(Long id) {
+        if (!usuarioRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado");
+        }
         usuarioRepository.deleteById(id);
     }
 

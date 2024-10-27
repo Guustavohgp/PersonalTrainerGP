@@ -11,7 +11,7 @@ async function validarLogin() {
 
     // Fazer requisição para o backend para verificar login
     try {
-        const response = await fetch('/api/usuarios/login', {
+        const response = await fetch('/login', {  // URL atualizada
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ async function validarCadastro() {
     }
 
     try {
-        const response = await fetch('/api/usuarios/cadastrar', {
+        const response = await fetch('/cadastrar', {  // URL atualizada
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

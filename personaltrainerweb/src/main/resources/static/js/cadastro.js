@@ -2,9 +2,17 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
     event.preventDefault();
 
     // Captura os dados do formulário
-    const nome = document.getElementById("nome").value;
-    const usuario = document.getElementById("usuario").value;
-    const senha = document.getElementById("senha").value;
+    const nome = document.getElementById("nome").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+    const mensagemCadastro = document.getElementById("mensagemCadastro");
+
+    // Validações simples
+    if (!nome || !usuario || !senha) {
+        mensagemCadastro.textContent = "Por favor, preencha todos os campos!";
+        mensagemCadastro.classList.add("erro");
+        return;
+    }
 
     // Cria um objeto com os dados do formulário
     const usuarioCadastro = {
@@ -14,7 +22,7 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
     };
 
     // Envia uma requisição POST para o backend
-    fetch("/usuarios/cadastrar", {
+    fetch("/cadastrar", {  
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -22,9 +30,8 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
         body: JSON.stringify(usuarioCadastro)
     })
     .then(response => {
-        // Verifica se a resposta é OK (código 200)
         if (response.ok) {
-            return response.json();
+            return response.json(); // Supondo que a resposta do servidor seja JSON
         } else {
             // Tratar resposta com erro de usuário já existente
             return response.json().then(err => {
@@ -33,9 +40,9 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
         }
     })
     .then(data => {
-        // Exibe mensagem de sucesso ou redireciona
-        document.getElementById("mensagemCadastro").textContent = "Usuário cadastrado com sucesso!";
-        document.getElementById("mensagemCadastro").classList.remove("erro");
+        // Exibe mensagem de sucesso
+        mensagemCadastro.textContent = "Usuário cadastrado com sucesso!";
+        mensagemCadastro.classList.remove("erro");
 
         // Redireciona para outra página 
         setTimeout(() => {
@@ -43,7 +50,7 @@ document.getElementById("cadastroForm").addEventListener("submit", function (eve
         }, 1000);
     })
     .catch(error => {
-        document.getElementById("mensagemCadastro").textContent = error.message;
-        document.getElementById("mensagemCadastro").classList.add("erro");
+        mensagemCadastro.textContent = error.message;
+        mensagemCadastro.classList.add("erro");
     });
 });

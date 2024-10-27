@@ -92,14 +92,20 @@
         a:hover {
             text-decoration: underline;
         }
+
         /* Estilo para a mensagem de login */
         .mensagem {
             color: greenyellow;
             margin-top: 15px;
             font-size: 16px;
         }
+
+        .erro {
+            color: red; /* Estilo para mensagens de erro */
+        }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <div class="overlay">
@@ -124,12 +130,14 @@
                 const usuario = document.getElementById("usuario").value;
                 const senha = document.getElementById("senha").value;
                 const mensagemLogin = document.getElementById("mensagemLogin");
+                mensagemLogin.classList.remove("erro"); // Remove classe de erro antes de cada nova tentativa
 
                 // Dados do formulário
                 const dados = {
                     usuario: usuario,
                     senha: senha
                 };
+
                 // Enviar a requisição POST ao backend
                 fetch("http://localhost:8083/usuarios/login", {
                     method: "POST",
@@ -147,17 +155,20 @@
                     })
                     .then(data => {
                         mensagemLogin.textContent = "Login realizado com sucesso!";
+                        mensagemLogin.classList.remove("erro"); // Remove classe de erro em caso de sucesso
                         // Redireciona para a página 
                         setTimeout(() => {
-                            window.location.href = "/pagina";
+                            window.location.href = "/pagina"; // Altere para a página correta
                         }, 1000);
                     })
                     .catch(error => {
                         mensagemLogin.textContent = error.message;
+                        mensagemLogin.classList.add("erro"); // Adiciona classe de erro
                     });
 
-                return false;  // Impede o envio imediato do formulário
+                return false; // Impede o envio imediato do formulário
             }
         </script>
+    </div>
 </body>
 </html>
