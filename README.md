@@ -46,7 +46,7 @@ Nível `Avançado`
 
 * **MySQL**: Banco de dados relacional para armazenamento de dados de usuários e dados de treino.
 
-![alt text](image.png)
+![alt text](image-23.png)
 
 ## Como Utilizar
 
