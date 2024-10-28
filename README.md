@@ -85,12 +85,12 @@ O cadastro será validado:
 
 ## Melhorias Futuras
 
-* Vincular ao banco de dados para criar um histórico de treinos.
+* Criar um histórico de treinos.
 * Fazer uma análise estatística do histórico.
 * Ajustar as saídas dos treinos para valores mais próximos da realidade.
-* Melhorar Design.
+* Melhorar Design e páginas interativas.
 * Aplicação com mais segurança.
-* Vincular as tabelas.
+* Relacionamento de tabelas.
 
 ## Contribuições
 Sinta-se à vontade para contribuir com melhorias no código, correções de bugs ou novas funcionalidades.
