@@ -54,7 +54,8 @@ Acesse:
 
 ### Página Principal
 ![alt text](image-1.png)
-### Clique em `Criar Conta` para criar seu cadastro
+
+Clique em `Criar Conta` para criar seu cadastro
 
 ### Crie seu `Cadastro`
 ![alt text](image-3.png)
