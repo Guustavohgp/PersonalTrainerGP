@@ -1,11 +1,11 @@
 ## Personal Trainer GP
 
-Este projeto é uma aplicação REST interativa que gera planos de treino personalizados com base nos dados fornecidos pelo usuário, como o tipo de treino, nível de experiência e dias disponíveis. A aplicação oferece opções de treino Funcional, Cardio e Peso Livre, com rotinas detalhadas para cada tipo de treino. Além disso a aplicação também possuí uma pagina de cadastro e loguin com autenticação. O usuario e o treino gerado são armazenados em um banco de dados.
+Este projeto é uma aplicação REST interativa que gera planos de treino personalizados com base nos dados fornecidos pelo usuário, como o `tipo de treino`, `nível de experiência` e `dias` disponíveis. A aplicação oferece opções de treino `Funcional`, `Cardio` e `Peso Livre`, com rotinas detalhadas para `cada` tipo de treino. Além disso a aplicação também possuí uma pagina de `cadastro e login com autenticação`. O usuario e o treino gerado são armazenados em um `banco de dados`.
 
 ## Funcionalidades
-* Treino Funcional: Rotinas que combinam exercícios de cardio com exercícios de força, ideais para melhorar a resistência física.
-* Treino Cardio: Focado em atividades aeróbicas, como corrida e pular corda, com variações para diferentes níveis de experiência.
-* Treino de Peso Livre: Rotinas adaptadas com foco em exercícios de força como supino, agachamentos e levantamento de pesos.
+* **Treino Funcional**: Rotinas que combinam exercícios de cardio com exercícios de força, ideais para melhorar a resistência física.
+* **Treino Cardio**: Focado em atividades aeróbicas, como corrida e pular corda, com variações para diferentes níveis de experiência.
+* **Treino de Peso Livre**: Rotinas adaptadas com foco em exercícios de força como supino, agachamentos e levantamento de pesos.
 
 Cada rotina de treino é personalizada com base no nível de experiência do usuário (iniciante, intermediário ou avançado) e no número de dias de treino por semana (1, 3 ou 5 dias).
 
@@ -19,8 +19,17 @@ Parte2
 ![alt text](image-15.png)
 
 ### Estrutura da lógica
+Nível `Iniciante`
 
+![alt text](image-20.png)
 
+Nível `Intermediário`
+
+![alt text](image-21.png)
+
+Nível `Avançado`
+
+![alt text](image-22.png)
 
 
 ## Tecnologias Utilizadas
@@ -38,7 +47,6 @@ Parte2
 * **MySQL**: Banco de dados relacional para armazenamento de dados de usuários e dados de treino.
 
 ![alt text](image.png)
-
 
 ## Como Utilizar
 
