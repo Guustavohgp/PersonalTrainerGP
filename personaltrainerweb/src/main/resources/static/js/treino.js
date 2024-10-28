@@ -28,14 +28,14 @@ function gerarRotinaTreino(params) {
             5: ["Dia 1: Esteira ou Bike 15min", "Dia 2: Pular Corda 10min", "Dia 3: Esteira ou Bike 15min", "Dia 4: Pular Corda 10min", "Dia 5: Esteira ou Bike 15min, Pular Corda 10min "]
         },
         intermediário: {
-            1: ["Dia 1: Esteira 20min, Pular Corda 15min"],
-            3: ["Dia 1: Esteira 20min", "Dia 2: Pular Corda 15min", "Dia 3: Esteira ou Bike 20min"],
-            5: ["Dia 1: Esteira 20min", "Dia 2: Pular Corda 15min", "Dia 3: Esteira ou Bike 20min", "Dia 4: Pular Corda 15min", "Dia 5: Esteira ou Bike 20min"]
+            1: ["Dia 1: Esteira ou Bike 20min, Pular Corda 15min"],
+            3: ["Dia 1: Esteira ou Bike 20min", "Dia 2: Pular Corda 15min", "Dia 3: Esteira ou Bike 20min"],
+            5: ["Dia 1: Esteira ou Bike 20min", "Dia 2: Pular Corda 15min", "Dia 3: Esteira ou Bike 20min", "Dia 4: Pular Corda 15min", "Dia 5: Esteira ou Bike 20min, Pular Corda 15min"]
         },
         avançado: {
             1: ["Dia 1: Esteira ou Bike 30min, Pular Corda 20min"],
             3: ["Dia 1: Esteira ou Bike 30min", "Dia 2: Pular Corda 20min", "Dia 3: Esteira ou Bike 30min"],
-            5: ["Dia 1: Esteira ou Bike 30min", "Dia 2: Pular Corda 20min", "Dia 3: Esteira ou Bike 30min", "Dia 4: Pular Corda 20min", "Dia 5: Esteira ou Bike 30min"]
+            5: ["Dia 1: Esteira ou Bike 30min", "Dia 2: Pular Corda 20min", "Dia 3: Esteira ou Bike 30min", "Dia 4: Pular Corda 20min", "Dia 5: Esteira ou Bike 30min, Pular Corda 15min"]
         }
     };
 
